@@ -24,7 +24,7 @@ func build_grid(grid: Dictionary, grid_width: int, grid_height: int):
 	width = grid_width
 	height = grid_height
 	var viewport_size = get_viewport_rect().size
-	var offset_x = (viewport_size.x - (grid_width * BLOCK_SIZE)) / 2 # centered horizontally
+	var offset_x = (viewport_size.x - ((grid_width-1) * BLOCK_SIZE)) / 2 # centered horizontally
 	var offset_y = 20
 	for y in grid_height:
 		for x in grid_width:

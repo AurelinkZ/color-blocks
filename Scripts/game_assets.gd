@@ -1,3 +1,5 @@
+# Singleton to access all the assets of the game.
+# Useful to get all 
 extends Node
 
 const COLOR_SELECTOR_TEXTURES = {
