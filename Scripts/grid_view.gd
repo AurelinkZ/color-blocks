@@ -10,6 +10,7 @@ var blocks_to_animate_remaining: Array
 var animate_color: Color
 
 signal block_clicked(cell: Vector2i)
+signal fill_grid_animation_finished()
 
 const TEXTURES = {
 	Color.RED: preload("res://Assets/Blocks/red_block.png"),
@@ -52,6 +53,7 @@ func refresh_one(cell: Vector2i, color: Color):
 func animate_refresh_grid(blocks_to_change: Array, color: Color):
 	if blocks_to_change.size() == 0:
 		blocks_to_animate_remaining = []
+		fill_grid_animation_finished.emit()
 		return
 	var cell = blocks_to_change.pop_front()
 	blocks_to_animate_remaining = blocks_to_change

@@ -14,9 +14,10 @@ const TEXTURES = {
 	Color.RED: [preload("res://Assets/ColorSelector/red_selector.png"), preload("res://Assets/ColorSelector/red_selector_selected.png")],
 	Color.YELLOW: [preload("res://Assets/ColorSelector/yellow_selector.png"), preload("res://Assets/ColorSelector/yellow_selector_selected.png")]
 }
-var button_group = ButtonGroup.new()
+var button_group: ButtonGroup = ButtonGroup.new()
 
 func build_buttons(pallette: Array):
+	_clear_buttons()
 	for color in pallette:
 		var button = TextureButton.new()
 		button.texture_normal = TEXTURES[color][NORMAL_TEXTURE]
@@ -28,6 +29,13 @@ func build_buttons(pallette: Array):
 		button.button_group = button_group
 		button.pressed.connect(_on_button_pressed.bind(color))
 		add_child(button)
+
+func _clear_buttons() -> void:
+	var buttons = get_children()
+	if buttons != null:
+		for button in buttons:
+			button.queue_free()
+	button_group = ButtonGroup.new()
 
 func _on_button_pressed(color: Color) -> void:
 	color_selected.emit(color)

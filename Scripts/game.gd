@@ -26,8 +26,6 @@ func _on_color_selected(color: Color) -> void:
 func _on_grid_view_block_clicked(cell: Vector2i) -> void:
 	cells_to_animate = grid_manager.fill_the_grid(cell, selected_color)
 	grid_view.animate_refresh_grid(cells_to_animate, selected_color)
-	if grid_manager.is_won():
-		_game_won()
 	
 func _on_restart_pressed() -> void:
 	grid_manager.restart_grid()
@@ -39,8 +37,9 @@ func _game_won():
 	$UI.add_child(won_ui)
 
 func _on_next_level_clicked(): # TODO FINISH NEXT LEVEL
-	index_level += 1
-	_start_new_level(levels[index_level])
+	if index_level < levels.size() - 1: 
+		index_level += 1
+		_start_new_level(levels[index_level])
 	
 	if $UI/WinUI != null:
 		$UI/WinUI.queue_free()
@@ -52,3 +51,7 @@ func _load_main_levels() -> void:
 	for filename in filenames:
 		levels.append(load("res://Levels/" + filename))
 	dir_levels.list_dir_end()
+
+func _on_grid_view_animation_finished() -> void:
+	if grid_manager.is_won():
+		_game_won()

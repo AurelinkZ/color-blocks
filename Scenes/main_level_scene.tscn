@@ -59,6 +59,7 @@ scale = Vector2(0.11049723, 0.11049723)
 texture = ExtResource("5_dk548")
 
 [connection signal="block_clicked" from="GridView" to="." method="_on_grid_view_block_clicked"]
+[connection signal="fill_grid_animation_finished" from="GridView" to="." method="_on_grid_view_animation_finished"]
 [connection signal="color_selected" from="UI/Control/HBoxContainer" to="." method="_on_color_selected"]
 [connection signal="pressed" from="UI/Control/Restart" to="." method="_on_restart_pressed"]
 [connection signal="timeout" from="AnimationTimer" to="GridView" method="_on_animation_timer_timeout"]
