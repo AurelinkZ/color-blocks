@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://bn27jbj571bpc"]
+
+[ext_resource type="Script" uid="uid://dx8visx1mmlq7" path="res://Scripts/grid_manager.gd" id="1_b42cg"]
+[ext_resource type="Script" uid="uid://bvpqw12ekiuk3" path="res://Scripts/game.gd" id="1_kk53g"]
+[ext_resource type="Script" uid="uid://b1n0qdw4y4mbe" path="res://Scripts/grid_view.gd" id="2_r4ohu"]
+[ext_resource type="Script" uid="uid://b7on4yqbkhskf" path="res://Scripts/color _selector.gd" id="4_acrce"]
+[ext_resource type="Texture2D" uid="uid://2janx31y0mxf" path="res://Assets/background_color_blocks.png" id="5_dk548"]
+
+[sub_resource type="Theme" id="Theme_acrce"]
+default_font_size = 3
+
+[node name="Game" type="Node2D" unique_id=1662702131]
+script = ExtResource("1_kk53g")
+
+[node name="GridManager" type="Node" parent="." unique_id=85947004]
+script = ExtResource("1_b42cg")
+
+[node name="GridView" type="Node2D" parent="." unique_id=1830719901]
+script = ExtResource("2_r4ohu")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=520056136]
+
+[node name="Control" type="Control" parent="UI" unique_id=517026659]
+z_index = -1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control" unique_id=1404778834]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 101.0
+offset_right = 106.0
+offset_bottom = 117.0
+script = ExtResource("4_acrce")
+
+[node name="Restart" type="Button" parent="UI/Control" unique_id=1371395278]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 104.0
+offset_right = 22.0
+offset_bottom = 117.0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_acrce")
+theme_override_constants/h_separation = 1
+theme_override_font_sizes/font_size = 3
+text = "Restart"
+
+[node name="AnimationTimer" type="Timer" parent="." unique_id=973665766]
+wait_time = 0.00999999999999999
+one_shot = true
+
+[node name="BackgroundColorBlocks" type="Sprite2D" parent="." unique_id=317947552]
+show_behind_parent = true
+position = Vector2(80, 59.999996)
+scale = Vector2(0.11049723, 0.11049723)
+texture = ExtResource("5_dk548")
+
+[connection signal="block_clicked" from="GridView" to="." method="_on_grid_view_block_clicked"]
+[connection signal="color_selected" from="UI/Control/HBoxContainer" to="." method="_on_color_selected"]
+[connection signal="pressed" from="UI/Control/Restart" to="." method="_on_restart_pressed"]
+[connection signal="timeout" from="AnimationTimer" to="GridView" method="_on_animation_timer_timeout"]
