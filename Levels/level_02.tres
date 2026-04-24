@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://b154vdve0xkqi"]
+
+[ext_resource type="Script" uid="uid://cowxies0ghfnm" path="res://Scripts/level_data.gd" id="1_scy1s"]
+
+[resource]
+script = ExtResource("1_scy1s")
+grid_height = 5
+grid_width = 5
+difficulty = "medium"
+win_color = Color(0, 0, 1, 1)
+metadata/_custom_type_script = "uid://cowxies0ghfnm"

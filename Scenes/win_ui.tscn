@@ -43,9 +43,18 @@ offset_top = 35.0
 offset_right = 18.0
 offset_bottom = 60.0
 grow_horizontal = 2
+mouse_filter = 2
+mouse_default_cursor_shape = 0
 theme = SubResource("Theme_6khx1")
 theme_override_font_sizes/font_size = 6
 text = "You won !"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
 
 [node name="NextLevel" type="Button" parent="Panel" unique_id=571295616]
 layout_mode = 1
