@@ -8,12 +8,7 @@ const PRESSED_TEXTURE = 1
 const TEXTURE_SIZE_WIDTH = 16
 const TEXTURE_SIZE_HEIGHT = 16
 
-const TEXTURES = {
-	Color.BLUE: [preload("res://Assets/ColorSelector/blue_selector.png"), preload("res://Assets/ColorSelector/blue_selector_selected.png")],
-	Color.GREEN: [preload("res://Assets/ColorSelector/green_selector.png"), preload("res://Assets/ColorSelector/green_selector_selected.png")],
-	Color.RED: [preload("res://Assets/ColorSelector/red_selector.png"), preload("res://Assets/ColorSelector/red_selector_selected.png")],
-	Color.YELLOW: [preload("res://Assets/ColorSelector/yellow_selector.png"), preload("res://Assets/ColorSelector/yellow_selector_selected.png")]
-}
+const TEXTURES = GameAssets.COLOR_SELECTOR_TEXTURES
 var button_group: ButtonGroup = ButtonGroup.new()
 
 func build_buttons(pallette: Array):

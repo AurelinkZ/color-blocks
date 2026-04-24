@@ -19,7 +19,6 @@ func setup(level: LevelData):
 	width = level.grid_width
 	current_pallette = PALETTES[level.difficulty]
 	target_color = level.win_color
-	print(target_color)
 	for i in range(0, height):
 		for j in range(0, width):
 			grid[Vector2i(j, i)] = pick_random_color()
@@ -67,7 +66,6 @@ func restart_grid() -> void:
 
 func is_won() -> bool:
 	for color in grid.values():
-		print(color, ": ", target_color)
 		if color != target_color:
 			return false
 	return true

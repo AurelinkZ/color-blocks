@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://b1n0qdw4y4mbe" path="res://Scripts/grid_view.gd" id="2_r4ohu"]
 [ext_resource type="Script" uid="uid://b4pq4nftg13ul" path="res://Scenes/ui.gd" id="4_45vkp"]
 [ext_resource type="Script" uid="uid://b7on4yqbkhskf" path="res://Scripts/color _selector.gd" id="4_acrce"]
-[ext_resource type="Texture2D" uid="uid://2janx31y0mxf" path="res://Assets/background_color_blocks.png" id="5_dk548"]
+[ext_resource type="Texture2D" uid="uid://bb2mc31ucm2v0" path="res://Assets/background_image_dark_blue.jpg" id="6_45vkp"]
 
 [sub_resource type="Theme" id="Theme_acrce"]
 default_font_size = 3
@@ -17,6 +17,7 @@ script = ExtResource("1_kk53g")
 script = ExtResource("1_b42cg")
 
 [node name="GridView" type="Node2D" parent="." unique_id=1830719901]
+z_index = 1
 script = ExtResource("2_r4ohu")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=520056136]
@@ -54,11 +55,12 @@ text = "Restart"
 wait_time = 0.00999999999999999
 one_shot = true
 
-[node name="BackgroundColorBlocks" type="Sprite2D" parent="." unique_id=317947552]
+[node name="Background" type="Sprite2D" parent="." unique_id=843647324]
 show_behind_parent = true
-position = Vector2(80, 59.999996)
-scale = Vector2(0.11049723, 0.11049723)
-texture = ExtResource("5_dk548")
+z_index = -2
+position = Vector2(79.99997, 60.000027)
+scale = Vector2(0.083333306, 0.11111107)
+texture = ExtResource("6_45vkp")
 
 [connection signal="block_clicked" from="GridView" to="." method="_on_grid_view_block_clicked"]
 [connection signal="fill_grid_animation_finished" from="GridView" to="." method="_on_grid_view_animation_finished"]
