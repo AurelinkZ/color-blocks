@@ -8,12 +8,12 @@ const WIN_SCENE = preload("res://Scenes/win_ui.tscn")
 
 var selected_color: Color
 var cells_to_animate: Array = []
-var levels: Array
+var levels: Array[LevelData] = []
+var index_level: int = 0
 
 func _ready() -> void:
-	_load_levels()
-	var level = load("res://Levels/level_01.tres") as LevelData
-	_start_new_level(level)
+	_load_main_levels()
+	_start_new_level(levels[index_level])
 
 func _start_new_level(level: LevelData) -> void:
 	grid_manager.setup(level)
@@ -39,16 +39,16 @@ func _game_won():
 	$UI.add_child(won_ui)
 
 func _on_next_level_clicked(): # TODO FINISH NEXT LEVEL
-	print("go to next level!")
+	index_level += 1
+	_start_new_level(levels[index_level])
+	
 	if $UI/WinUI != null:
 		$UI/WinUI.queue_free()
 
-func _load_levels() -> void:
+func _load_main_levels() -> void:
 	var dir_levels = DirAccess.open("res://Levels/")
 	dir_levels.list_dir_begin()
 	var filenames = dir_levels.get_files()
 	for filename in filenames:
 		levels.append(load("res://Levels/" + filename))
 	dir_levels.list_dir_end()
-	for level in levels:
-		print(level)

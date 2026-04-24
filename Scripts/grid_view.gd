@@ -19,6 +19,7 @@ const TEXTURES = {
 }
 
 func build_grid(grid: Dictionary, grid_width: int, grid_height: int):
+	delete_grid()
 	width = grid_width
 	height = grid_height
 	var viewport_size = get_viewport_rect().size
@@ -34,6 +35,13 @@ func build_grid(grid: Dictionary, grid_width: int, grid_height: int):
 			new_block.block_clicked.connect(_on_block_clicked)
 			grid_view[Vector2i(x, y)] = new_block
 			add_child(new_block)
+
+func delete_grid():
+	var blocks = get_children()
+	if blocks != null:
+		for block in blocks:
+			block.queue_free()
+	grid_view.clear()
 
 func _on_block_clicked(cell: Vector2i):
 	block_clicked.emit(cell)
