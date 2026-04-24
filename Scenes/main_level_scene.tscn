@@ -59,6 +59,27 @@ theme_override_constants/h_separation = 1
 theme_override_font_sizes/font_size = 3
 text = "Restart"
 
+[node name="TargetColor" type="TextEdit" parent="UI/Control" unique_id=156064307]
+self_modulate = Color(0, 0, 0, 0)
+top_level = true
+z_index = 1
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 22.0
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 3
+editable = false
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+empty_selection_clipboard_enabled = false
+autowrap_mode = 2
+
 [node name="AnimationTimer" type="Timer" parent="." unique_id=973665766]
 wait_time = 0.00999999999999999
 one_shot = true

@@ -12,22 +12,29 @@ var cells_to_animate: Array = []
 var levels: Array[LevelData] = []
 var index_level: int = 0
 
+### STARTING POINT OF THE GAME.
+### When launching, the game will load all the main levels and start by the first level.
+### TEMPORARY WHILE THERE IS NOT A START MENU.
 func _ready() -> void:
 	_load_main_levels()
 	_start_new_level(levels[index_level])
 
+### Function used to setup the back and the front, used to first start a complete new level.
 func _start_new_level(level: LevelData) -> void:
 	ui.game_running()
 	grid_manager.setup(level)
 	grid_view.build_grid(grid_manager.grid, level.grid_width, level.grid_height)
 	color_selector.build_buttons(grid_manager.current_pallette)
+	ui.set_target_color_ui(level.win_color)
 	
 func _on_color_selected(color: Color) -> void:
 	selected_color = color
 
+## Function receiving the signal of a block clicked by the player.
 func _on_grid_view_block_clicked(cell: Vector2i) -> void:
-	cells_to_animate = grid_manager.fill_the_grid(cell, selected_color)
-	grid_view.animate_refresh_grid(cells_to_animate, selected_color)
+	if grid_manager.is_won() != true: # When game is won, player can't click a block
+		cells_to_animate = grid_manager.fill_the_grid(cell, selected_color)
+		grid_view.animate_refresh_grid(cells_to_animate, selected_color)
 
 # Receive the signal of the restart button of the UI when the game is running.
 func _on_restart_pressed() -> void:
@@ -56,7 +63,7 @@ func _game_won():
 func _on_next_level_clicked():
 	if index_level < levels.size() - 1: 
 		index_level += 1
-		_start_new_level(levels[index_level])
+	_start_new_level(levels[index_level]) # Not indent in case we reach the last level
 	
 	if $UI/WinUI != null:
 		$UI/WinUI.queue_free()
