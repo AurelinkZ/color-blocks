@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dx8visx1mmlq7" path="res://Scripts/grid_manager.gd" id="1_b42cg"]
 [ext_resource type="Script" uid="uid://bvpqw12ekiuk3" path="res://Scripts/game.gd" id="1_kk53g"]
 [ext_resource type="Script" uid="uid://b1n0qdw4y4mbe" path="res://Scripts/grid_view.gd" id="2_r4ohu"]
-[ext_resource type="Script" uid="uid://b4pq4nftg13ul" path="res://Scenes/ui.gd" id="4_45vkp"]
+[ext_resource type="Script" uid="uid://b4pq4nftg13ul" path="res://Scripts/ui.gd" id="4_45vkp"]
 [ext_resource type="Script" uid="uid://b7on4yqbkhskf" path="res://Scripts/color _selector.gd" id="4_acrce"]
 [ext_resource type="Texture2D" uid="uid://bb2mc31ucm2v0" path="res://Assets/background_image_dark_blue.jpg" id="6_45vkp"]
 
