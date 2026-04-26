@@ -27,8 +27,8 @@ script = ExtResource("4_45vkp")
 z_index = -1
 layout_mode = 3
 anchors_preset = 0
-offset_right = 160.0
-offset_bottom = 120.0
+offset_right = 426.0
+offset_bottom = 240.0
 mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Control" unique_id=1404778834]
@@ -48,15 +48,19 @@ alignment = 1
 script = ExtResource("4_acrce")
 
 [node name="Restart" type="Button" parent="UI/Control" unique_id=1371395278]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 3.0
-offset_top = 104.0
-offset_right = 22.0
-offset_bottom = 117.0
+offset_top = -23.0
+offset_right = 40.0
+offset_bottom = -3.0
+grow_vertical = 0
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_acrce")
 theme_override_constants/h_separation = 1
-theme_override_font_sizes/font_size = 3
+theme_override_font_sizes/font_size = 8
 text = "Restart"
 
 [node name="TargetColor" type="TextEdit" parent="UI/Control" unique_id=156064307]
@@ -64,11 +68,11 @@ self_modulate = Color(0, 0, 0, 0)
 top_level = true
 z_index = 1
 layout_mode = 0
-offset_right = 45.0
-offset_bottom = 22.0
+offset_right = 87.0
+offset_bottom = 28.0
 theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 3
+theme_override_font_sizes/font_size = 8
 editable = false
 context_menu_enabled = false
 emoji_menu_enabled = false
@@ -87,8 +91,8 @@ one_shot = true
 [node name="Background" type="Sprite2D" parent="." unique_id=843647324]
 show_behind_parent = true
 z_index = -2
-position = Vector2(79.99997, 60.000027)
-scale = Vector2(0.083333306, 0.11111107)
+position = Vector2(213, 120.00003)
+scale = Vector2(0.221875, 0.2222222)
 texture = ExtResource("6_45vkp")
 
 [connection signal="block_clicked" from="GridView" to="." method="_on_grid_view_block_clicked"]

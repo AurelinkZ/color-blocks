@@ -21,9 +21,9 @@ GameAssets="*uid://dw1wgl8v01x5m"
 
 [display]
 
-window/size/viewport_width=160
-window/size/viewport_height=120
-window/size/window_width_override=960
+window/size/viewport_width=426
+window/size/viewport_height=240
+window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 

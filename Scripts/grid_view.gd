@@ -1,7 +1,7 @@
 extends Node2D
 
 const BLOCK_SCENE = preload("res://Scenes/block.tscn")
-const BLOCK_SIZE = 8
+const BLOCK_SIZE = 16
 
 var width: int
 var height: int
@@ -12,19 +12,14 @@ var animate_color: Color
 signal block_clicked(cell: Vector2i)
 signal fill_grid_animation_finished()
 
-const TEXTURES = {
-	Color.RED: preload("res://Assets/Blocks/red_block.png"),
-	Color.BLUE: preload("res://Assets/Blocks/blue_block.png"),
-	Color.YELLOW: preload("res://Assets/Blocks/yellow_block.png"),
-	Color.GREEN: preload("res://Assets/Blocks/green_block.png")
-}
+const TEXTURES = GameAssets.TEXTURE_BLOCKS
 
 func build_grid(grid: Dictionary, grid_width: int, grid_height: int):
 	delete_grid()
 	width = grid_width
 	height = grid_height
 	var viewport_size = get_viewport_rect().size
-	var offset_x = (viewport_size.x - ((grid_width-1) * BLOCK_SIZE)) / 2 # centered horizontally
+	var offset_x = (viewport_size.x - ((grid_width - 1 ) * BLOCK_SIZE)) / 2 # centered horizontally
 	var offset_y = 20
 	for y in grid_height:
 		for x in grid_width:
