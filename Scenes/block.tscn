@@ -16,3 +16,5 @@ script = ExtResource("1_ejx3s")
 shape = SubResource("RectangleShape2D_c2iur")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_cursor_hover"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_cursor_not_hovering"]

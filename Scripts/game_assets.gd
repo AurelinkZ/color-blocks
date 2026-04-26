@@ -22,3 +22,5 @@ const TEXTURE_BLOCKS = {
 	Color.YELLOW: preload("res://Assets/new_blocks/new_yellow_block.png"),
 	Color.GREEN: preload("res://Assets/new_blocks/new_green_block.png")
 }
+
+const HOVER_BLOCK = preload("res://Assets/hover.png")

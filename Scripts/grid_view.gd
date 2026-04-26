@@ -31,7 +31,7 @@ func build_grid(grid: Dictionary, grid_width: int, grid_height: int):
 			new_block.set_cell(cell_pos)
 			grid_view[Vector2i(x, y)] = new_block
 			# Color
-			new_block.set_color(grid[cell_pos], TEXTURES)
+			new_block.set_color_first(grid[cell_pos], TEXTURES)
 			# Signal
 			new_block.block_clicked.connect(_on_block_clicked)
 			add_child(new_block)
