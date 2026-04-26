@@ -16,6 +16,7 @@ const TEXTURES = GameAssets.TEXTURE_BLOCKS
 
 func build_grid(grid: Dictionary, grid_width: int, grid_height: int):
 	delete_grid()
+	# Position of the whole grid, centered in x axis, little of offset for the y axis
 	width = grid_width
 	height = grid_height
 	var viewport_size = get_viewport_rect().size
@@ -24,12 +25,15 @@ func build_grid(grid: Dictionary, grid_width: int, grid_height: int):
 	for y in grid_height:
 		for x in grid_width:
 			var new_block = BLOCK_SCENE.instantiate()
+			# Position
 			new_block.position = Vector2(offset_x + x * BLOCK_SIZE, offset_y + y * BLOCK_SIZE)
 			var cell_pos = Vector2i(x, y)
-			new_block.set_color(grid[cell_pos], TEXTURES)
 			new_block.set_cell(cell_pos)
-			new_block.block_clicked.connect(_on_block_clicked)
 			grid_view[Vector2i(x, y)] = new_block
+			# Color
+			new_block.set_color(grid[cell_pos], TEXTURES)
+			# Signal
+			new_block.block_clicked.connect(_on_block_clicked)
 			add_child(new_block)
 
 func delete_grid():

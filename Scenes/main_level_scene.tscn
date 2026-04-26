@@ -90,7 +90,7 @@ one_shot = true
 
 [node name="Background" type="Sprite2D" parent="." unique_id=843647324]
 show_behind_parent = true
-z_index = -2
+z_index = -3
 position = Vector2(213, 120.00003)
 scale = Vector2(0.221875, 0.2222222)
 texture = ExtResource("6_45vkp")
