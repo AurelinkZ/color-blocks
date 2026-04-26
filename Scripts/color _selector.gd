@@ -10,9 +10,22 @@ const TEXTURE_SIZE_HEIGHT = 16
 
 const TEXTURES = GameAssets.COLOR_SELECTOR_TEXTURES
 var button_group: ButtonGroup = ButtonGroup.new()
+var pallette_color: Array = []
+
+## Function used for shortcuts.
+## This will press the buttons and emit the signal of the color selector without having to use the mouse.
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		var shortcut_str = "select_"
+		for i in pallette_color.size():
+			if event.is_action_pressed(shortcut_str + str(i)):
+				var button_selector = get_child(i) 
+				button_selector.button_pressed = true
+				button_selector.pressed.emit()
 
 func build_buttons(pallette: Array):
 	_clear_buttons()
+	pallette_color = pallette
 	for color in pallette:
 		var button = TextureButton.new()
 		button.texture_normal = TEXTURES[color][NORMAL_TEXTURE]
