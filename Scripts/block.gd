@@ -34,6 +34,7 @@ func set_color(color: Color, textures: Dictionary):
 		var tween_pop = create_tween()
 		tween_pop.tween_property(sprite, "scale", Vector2(1.25, 1.25), 0.05)
 		tween_pop.tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.05)
+		
 	else:
 		push_warning("Color is not in the textures dictionary: ", color)
 	

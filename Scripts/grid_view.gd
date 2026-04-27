@@ -3,6 +3,9 @@ extends Node2D
 const BLOCK_SCENE = preload("res://Scenes/block.tscn")
 const BLOCK_SIZE = 16
 
+# SFX
+const PITCH_STEP: float = 0.03
+
 var width: int
 var height: int
 var grid_view: Dictionary = {}
@@ -48,11 +51,15 @@ func _on_block_clicked(cell: Vector2i):
 	
 func refresh_one(cell: Vector2i, color: Color):
 	grid_view[cell].set_color(color, TEXTURES)
+	var pop_sound = $"../PopSound"
+	pop_sound.play()
+	pop_sound.pitch_scale += PITCH_STEP
 	
 func animate_refresh_grid(blocks_to_change: Array, color: Color):
 	if blocks_to_change.size() == 0:
 		blocks_to_animate_remaining = []
 		fill_grid_animation_finished.emit()
+		$"../PopSound".pitch_scale = 1.0
 		return
 	var cell = blocks_to_change.pop_front()
 	blocks_to_animate_remaining = blocks_to_change
