@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b7on4yqbkhskf" path="res://Scripts/color _selector.gd" id="4_acrce"]
 [ext_resource type="Texture2D" uid="uid://bb2mc31ucm2v0" path="res://Assets/background_image_dark_blue.jpg" id="6_45vkp"]
 [ext_resource type="AudioStream" uid="uid://dt6lphfkiwfya" path="res://SFX/pop_sound.wav" id="7_i6njh"]
+[ext_resource type="AudioStream" uid="uid://d1yk5yjotxqvd" path="res://SFX/hover_sound.wav" id="8_r2c11"]
 
 [sub_resource type="Theme" id="Theme_acrce"]
 default_font_size = 3
@@ -98,6 +99,9 @@ texture = ExtResource("6_45vkp")
 
 [node name="PopSound" type="AudioStreamPlayer2D" parent="." unique_id=120160438]
 stream = ExtResource("7_i6njh")
+
+[node name="HoverSound" type="AudioStreamPlayer2D" parent="." unique_id=1509025726]
+stream = ExtResource("8_r2c11")
 
 [connection signal="block_clicked" from="GridView" to="." method="_on_grid_view_block_clicked"]
 [connection signal="fill_grid_animation_finished" from="GridView" to="." method="_on_grid_view_animation_finished"]

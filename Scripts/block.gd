@@ -2,7 +2,8 @@ extends Node2D
 
 signal block_clicked(cell: Vector2i)
 var cell: Vector2i
-var hover_block: Sprite2D
+var hover_sprite: Sprite2D
+@export var hover_sound: AudioStreamPlayer2D
 
 func set_color_first(color: Color, textures: Dictionary):
 	if textures.has(color):
@@ -20,7 +21,7 @@ func set_color_first(color: Color, textures: Dictionary):
 		hover.texture = GameAssets.HOVER_BLOCK
 		hover.z_index = 1
 		hover.hide()
-		hover_block = hover
+		hover_sprite = hover
 		add_child(hover)
 		hover.scale = Vector2(0, 0)
 	else:
@@ -46,14 +47,15 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		block_clicked.emit(cell)
 
 func _on_cursor_hover() -> void:
-	hover_block.show()
+	AudioManager.play_hover()
+	hover_sprite.show()
 	var tween = create_tween()
-	tween.tween_property(hover_block, "scale", Vector2(1.2, 1.2), 0.08)
-	tween.tween_property(hover_block, "scale", Vector2(1.0, 1.0), 0.08)
+	tween.tween_property(hover_sprite, "scale", Vector2(1.2, 1.2), 0.08)
+	tween.tween_property(hover_sprite, "scale", Vector2(1.0, 1.0), 0.08)
 
 func _on_cursor_not_hovering() -> void:
 	var tween = create_tween()
-	tween.tween_property(hover_block, "scale", Vector2(0.0, 0.0), 0.1)
+	tween.tween_property(hover_sprite, "scale", Vector2(0.0, 0.0), 0.1)
 	await tween.finished
-	hover_block.hide()
+	hover_sprite.hide()
 	
