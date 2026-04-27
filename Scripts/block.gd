@@ -22,6 +22,7 @@ func set_color_first(color: Color, textures: Dictionary):
 		hover.hide()
 		hover_block = hover
 		add_child(hover)
+		hover.scale = Vector2(0, 0)
 	else:
 		push_warning("Color is not in the textures dictionary: ", color)
 
@@ -45,7 +46,13 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 func _on_cursor_hover() -> void:
 	hover_block.show()
-	# TODO TWEEN
+	var tween = create_tween()
+	tween.tween_property(hover_block, "scale", Vector2(1.2, 1.2), 0.08)
+	tween.tween_property(hover_block, "scale", Vector2(1.0, 1.0), 0.08)
 
 func _on_cursor_not_hovering() -> void:
+	var tween = create_tween()
+	tween.tween_property(hover_block, "scale", Vector2(0.0, 0.0), 0.1)
+	await tween.finished
 	hover_block.hide()
+	
