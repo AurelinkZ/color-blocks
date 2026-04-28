@@ -20,7 +20,8 @@ const TEXTURE_BLOCKS = {
 	Color.RED: preload("res://Assets/new_blocks/new_red_block.png"),
 	Color.BLUE: preload("res://Assets/new_blocks/new_blue_block.png"),
 	Color.YELLOW: preload("res://Assets/new_blocks/new_yellow_block.png"),
-	Color.GREEN: preload("res://Assets/new_blocks/new_green_block.png")
+	Color.GREEN: preload("res://Assets/new_blocks/new_green_block.png"),
+	Color.WHITE: preload("res://Assets/new_blocks/white_block.png")
 }
 
 const HOVER_BLOCK = preload("res://Assets/hover.png")

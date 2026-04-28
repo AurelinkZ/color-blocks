@@ -10,6 +10,8 @@ var current_pitch_scale: float = 1.0
 # AnimationTimer
 @onready var animation_timer = $AnimationTimer
 const initial_timer_animation: float = 0.2
+const timer_animation_step: float = 0.015
+const minimum_timer_animation: float = 0.015
 
 var width: int
 var height: int
@@ -29,7 +31,7 @@ func build_grid(grid: Dictionary, grid_width: int, grid_height: int):
 	height = grid_height
 	var viewport_size = get_viewport_rect().size
 	var offset_x = (viewport_size.x - ((grid_width - 1 ) * BLOCK_SIZE)) / 2 # centered horizontally
-	var offset_y = 20
+	var offset_y = (viewport_size.y - (grid_height * BLOCK_SIZE)) / 2 # centered vertically
 	for y in grid_height:
 		for x in grid_width:
 			var new_block = BLOCK_SCENE.instantiate()
@@ -74,10 +76,10 @@ func animate_refresh_grid(blocks_to_change: Array, color: Color):
 	animation_timer.start()
 
 func _on_animation_timer_timeout() -> void:
-	if animation_timer.wait_time >= 0.02:
-		animation_timer.wait_time -= 0.02
+	if animation_timer.wait_time >= minimum_timer_animation:
+		animation_timer.wait_time -= timer_animation_step
 	else:
-		animation_timer.wait_time = 0.015
+		animation_timer.wait_time = minimum_timer_animation
 	animate_refresh_grid(blocks_to_animate_remaining, animate_color)
 	
 func refresh_grid(grid: Dictionary):

@@ -3,7 +3,6 @@ extends Node2D
 signal block_clicked(cell: Vector2i)
 var cell: Vector2i
 var hover_sprite: Sprite2D
-@export var hover_sound: AudioStreamPlayer2D
 
 func set_color_first(color: Color, textures: Dictionary):
 	if textures.has(color):
