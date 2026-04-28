@@ -7,6 +7,10 @@ const BLOCK_SIZE = 16
 const PITCH_STEP: float = 0.03
 var current_pitch_scale: float = 1.0
 
+# AnimationTimer
+@onready var animation_timer = $AnimationTimer
+const initial_timer_animation: float = 0.2
+
 var width: int
 var height: int
 var grid_view: Dictionary = {}
@@ -44,7 +48,8 @@ func delete_grid():
 	var blocks = get_children()
 	if blocks != null:
 		for block in blocks:
-			block.queue_free()
+			if block != animation_timer:
+				block.queue_free()
 	grid_view.clear()
 
 func _on_block_clicked(cell: Vector2i):
@@ -53,7 +58,6 @@ func _on_block_clicked(cell: Vector2i):
 func refresh_one(cell: Vector2i, color: Color):
 	grid_view[cell].set_color(color, TEXTURES)
 	AudioManager.play_pop(current_pitch_scale)
-	print(current_pitch_scale)
 	current_pitch_scale += PITCH_STEP
 	
 func animate_refresh_grid(blocks_to_change: Array, color: Color):
@@ -61,14 +65,19 @@ func animate_refresh_grid(blocks_to_change: Array, color: Color):
 		blocks_to_animate_remaining = []
 		fill_grid_animation_finished.emit()
 		current_pitch_scale = 1.0
+		animation_timer.wait_time = initial_timer_animation
 		return
 	var cell = blocks_to_change.pop_front()
 	blocks_to_animate_remaining = blocks_to_change
 	animate_color = color
 	refresh_one(cell, color)
-	$"../AnimationTimer".start()
+	animation_timer.start()
 
 func _on_animation_timer_timeout() -> void:
+	if animation_timer.wait_time >= 0.02:
+		animation_timer.wait_time -= 0.02
+	else:
+		animation_timer.wait_time = 0.015
 	animate_refresh_grid(blocks_to_animate_remaining, animate_color)
 	
 func refresh_grid(grid: Dictionary):
