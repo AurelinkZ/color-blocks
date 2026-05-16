@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://covooqoakenry"]
 
+[ext_resource type="Script" uid="uid://c1xtep06j7u3u" path="res://Scripts/level_editor.gd" id="1_rot6e"]
 [ext_resource type="Texture2D" uid="uid://bb2mc31ucm2v0" path="res://Assets/background_image_dark_blue.jpg" id="1_s1b0e"]
 [ext_resource type="Script" uid="uid://ccjjuwgmob3tg" path="res://grid_editor.gd" id="2_n1xa8"]
-[ext_resource type="Script" uid="uid://c8uvco2omhky" path="res://Scenes/grid_view_editor.gd" id="3_n1xa8"]
+[ext_resource type="Script" uid="uid://c8uvco2omhky" path="res://Scripts/grid_view_editor.gd" id="3_n1xa8"]
 
 [node name="LevelEditor" type="Node2D" unique_id=2050058702]
+script = ExtResource("1_rot6e")
 
 [node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=139108953]
 position = Vector2(212.99998, 119.99998)

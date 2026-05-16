@@ -2,6 +2,8 @@
 # Useful to get all 
 extends Node
 
+
+
 const COLOR_SELECTOR_TEXTURES = {
 	Color.BLUE: [preload("res://Assets/ColorSelector/blue_selector.png"), preload("res://Assets/ColorSelector/blue_selector_selected.png")],
 	Color.GREEN: [preload("res://Assets/ColorSelector/green_selector.png"), preload("res://Assets/ColorSelector/green_selector_selected.png")],
@@ -16,6 +18,7 @@ const TEXTURES_OLD_BLOCKS = {
 	Color.GREEN: preload("res://Assets/Blocks/green_block.png")
 }
 
+const BLOCK_SIZE = 16
 const TEXTURE_BLOCKS = {
 	Color.RED: preload("res://Assets/new_blocks/new_red_block.png"),
 	Color.BLUE: preload("res://Assets/new_blocks/new_blue_block.png"),

@@ -1,7 +1,6 @@
 extends Node2D
 
 const BLOCK_SCENE = preload("res://Scenes/block.tscn")
-const BLOCK_SIZE = 16
 
 # SFX
 const PITCH_STEP: float = 0.03
@@ -30,13 +29,13 @@ func build_grid(grid: Dictionary, grid_width: int, grid_height: int):
 	width = grid_width
 	height = grid_height
 	var viewport_size = get_viewport_rect().size
-	var offset_x = (viewport_size.x - ((grid_width - 1 ) * BLOCK_SIZE)) / 2 # centered horizontally
-	var offset_y = (viewport_size.y - (grid_height * BLOCK_SIZE)) / 2 # centered vertically
+	var offset_x = (viewport_size.x - ((grid_width - 1 ) * GameAssets.BLOCK_SIZE)) / 2 # centered horizontally
+	var offset_y = (viewport_size.y - (grid_height * GameAssets.BLOCK_SIZE)) / 2 # centered vertically
 	for y in grid_height:
 		for x in grid_width:
 			var new_block = BLOCK_SCENE.instantiate()
 			# Position
-			new_block.position = Vector2(offset_x + x * BLOCK_SIZE, offset_y + y * BLOCK_SIZE)
+			new_block.position = Vector2(offset_x + x * GameAssets.BLOCK_SIZE, offset_y + y * GameAssets.BLOCK_SIZE)
 			var cell_pos = Vector2i(x, y)
 			new_block.set_cell(cell_pos)
 			grid_view[Vector2i(x, y)] = new_block
