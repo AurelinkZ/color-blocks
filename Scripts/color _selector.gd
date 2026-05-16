@@ -37,7 +37,7 @@ func build_buttons(pallette: Array):
 		button.button_group = button_group
 		button.pressed.connect(_on_button_pressed.bind(color))
 		add_child(button)
-		
+
 func _clear_buttons() -> void:
 	var buttons = get_children()
 	if buttons != null:
