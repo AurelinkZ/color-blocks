@@ -14,10 +14,12 @@ func setup_initial_grid():
 		for x in width:
 			grid[Vector2i(x, y)] = Color.WHITE
 
+## Set the width and refreshes the grid directly
 func set_width(width_user: int):
 	width = width_user
 	refresh_grid()
-	
+
+## Set the height and refreshes the grid directly
 func set_height(height_user: int):
 	height = height_user
 	refresh_grid()

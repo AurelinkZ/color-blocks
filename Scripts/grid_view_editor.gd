@@ -9,11 +9,16 @@ var width: int
 var height: int
 var grid_view: Dictionary # Vector2i -> block
 
+var pop_pitch:float = 1.0
+
+## Main function of this script, used to setup the initial grid which should be a blank grid
+## with 8x10 size
 func setup_new_grid_view(grid: Dictionary, grid_width: int, grid_height: int):
+	var new_grid_view = {}
 	width = grid_width
 	height = grid_height
 	var viewport_size = get_viewport_rect().size
-	var offset_x = (viewport_size.x - ((grid_width - 1 ) * GameAssets.BLOCK_SIZE)) / 2 # centered horizontally
+	var offset_x = (viewport_size.x - ((grid_width - 5 ) * GameAssets.BLOCK_SIZE)) / 2 # centered horizontally
 	var offset_y = (viewport_size.y - (grid_height * GameAssets.BLOCK_SIZE)) / 2 # centered vertically
 	for y in height:
 		for x in width:
@@ -23,12 +28,26 @@ func setup_new_grid_view(grid: Dictionary, grid_width: int, grid_height: int):
 			new_block.set_cell(Vector2i(x, y))
 			new_block.block_clicked.connect(_on_block_clicked)
 			new_block.set_color_first(grid[Vector2i(x, y)], BLOCK_TEXTURES)
-			grid_view[Vector2i(x, y)] = new_block
+			new_grid_view[Vector2i(x, y)] = new_block
 			add_child(new_block)
+	grid_view = new_grid_view.duplicate()
 
+## Used when the user changes the color of a single block
 func refresh_block(cell, color: Color):
 	grid_view[cell].set_color(color)
-	AudioManager.play_pop(1.0)
+	AudioManager.play_pop(pop_pitch)
+
+func refresh_grid(new_grid: Dictionary, grid_width: int, grid_height: int):
+	delete_grid()
+	setup_new_grid_view(new_grid, grid_width, grid_height)
+	AudioManager.play_pop(pop_pitch)
+
+func delete_grid():
+	var blocks = get_children()
+	if blocks != null:
+		for block in blocks:
+			block.queue_free()
+	grid_view.clear()
 
 func _on_block_clicked(cell: Vector2i):
 	block_clicked.emit(cell)
