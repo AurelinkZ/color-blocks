@@ -3,10 +3,12 @@ extends Node2D
 signal block_clicked(cell: Vector2i)
 var cell: Vector2i
 var hover_sprite: Sprite2D
+var textures: Dictionary
 
-func set_color_first(color: Color, textures: Dictionary):
+func set_color_first(color: Color, textures_selected: Dictionary):
+	textures = textures_selected
 	if textures.has(color):
-		set_color(color, textures)
+		set_color(color)
 		
 		# Setup for shadow behind the sprite
 		var shadow = Sprite2D.new()
@@ -26,7 +28,7 @@ func set_color_first(color: Color, textures: Dictionary):
 	else:
 		push_warning("Color is not in the textures dictionary: ", color)
 
-func set_color(color: Color, textures: Dictionary):
+func set_color(color: Color):
 	if textures.has(color):
 		# Setup for the main sprite
 		var sprite = $MainSprite
@@ -47,10 +49,11 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 func _on_cursor_hover() -> void:
 	AudioManager.play_hover()
-	hover_sprite.show()
-	var tween = create_tween()
-	tween.tween_property(hover_sprite, "scale", Vector2(1.2, 1.2), 0.08)
-	tween.tween_property(hover_sprite, "scale", Vector2(1.0, 1.0), 0.08)
+	if hover_sprite != null:
+		hover_sprite.show()
+		var tween = create_tween()
+		tween.tween_property(hover_sprite, "scale", Vector2(1.2, 1.2), 0.08)
+		tween.tween_property(hover_sprite, "scale", Vector2(1.0, 1.0), 0.08)
 
 func _on_cursor_not_hovering() -> void:
 	var tween = create_tween()

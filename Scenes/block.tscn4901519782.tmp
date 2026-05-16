@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cxq787dij3475"]
+
+[ext_resource type="Script" uid="uid://o7qsk51psf7x" path="res://Scripts/block.gd" id="1_ejx3s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2iur"]
+size = Vector2(16, 16)
+
+[node name="Block" type="Node2D" unique_id=503574811]
+script = ExtResource("1_ejx3s")
+
+[node name="MainSprite" type="Sprite2D" parent="." unique_id=77915885]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=431584458]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=737010126]
+shape = SubResource("RectangleShape2D_c2iur")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_cursor_hover"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_cursor_not_hovering"]

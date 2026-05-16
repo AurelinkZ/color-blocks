@@ -8,6 +8,7 @@ var height: int = INITIAL_HEIGHT
 var grid: Dictionary # Vector2i -> Color (Example: Vector2i(0, 0) -> Color.WHITE)
 
 ## Function to use to initialise the first grid of the level editor
+# Every cell of the grid will be blank (Color.WHTIE)
 func setup_initial_grid():
 	for y in height:
 		for x in width:
@@ -38,3 +39,6 @@ func refresh_grid():
 func set_cell(cell: Vector2i, color: Color):
 	if GameAssets.TEXTURE_BLOCKS.has(color):
 		grid[cell] = color
+
+func get_cell_color(cell: Vector2i):
+	return grid[cell]

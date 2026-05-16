@@ -57,7 +57,7 @@ func _on_block_clicked(cell: Vector2i):
 	block_clicked.emit(cell)
 	
 func refresh_one(cell: Vector2i, color: Color):
-	grid_view[cell].set_color(color, TEXTURES)
+	grid_view[cell].set_color(color)
 	AudioManager.play_pop(current_pitch_scale)
 	current_pitch_scale += PITCH_STEP
 	
@@ -83,4 +83,4 @@ func _on_animation_timer_timeout() -> void:
 	
 func refresh_grid(grid: Dictionary):
 	for cell in grid:
-		grid_view[cell].set_color(grid[cell], TEXTURES)
+		grid_view[cell].set_color(grid[cell])

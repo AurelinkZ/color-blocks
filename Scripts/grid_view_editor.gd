@@ -7,7 +7,7 @@ signal block_clicked(cell: Vector2i)
 
 var width: int
 var height: int
-var grid_view: Dictionary[Vector2i, Color]
+var grid_view: Dictionary # Vector2i -> block
 
 func setup_new_grid_view(grid: Dictionary, grid_width: int, grid_height: int):
 	width = grid_width
@@ -20,10 +20,15 @@ func setup_new_grid_view(grid: Dictionary, grid_width: int, grid_height: int):
 			var new_block = BLOCK.instantiate()
 			new_block.position.x = (offset_x + GameAssets.BLOCK_SIZE * x)
 			new_block.position.y = (offset_y + GameAssets.BLOCK_SIZE * y)
+			new_block.set_cell(Vector2i(x, y))
 			new_block.block_clicked.connect(_on_block_clicked)
 			new_block.set_color_first(grid[Vector2i(x, y)], BLOCK_TEXTURES)
-			grid_view[Vector2i(x, y)] = grid[Vector2i(x, y)]
+			grid_view[Vector2i(x, y)] = new_block
 			add_child(new_block)
-			
+
+func refresh_block(cell, color: Color):
+	grid_view[cell].set_color(color)
+	AudioManager.play_pop(1.0)
+
 func _on_block_clicked(cell: Vector2i):
 	block_clicked.emit(cell)

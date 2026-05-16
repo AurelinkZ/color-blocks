@@ -18,3 +18,5 @@ script = ExtResource("2_n1xa8")
 
 [node name="GridViewEditor" type="Node2D" parent="." unique_id=398632500]
 script = ExtResource("3_n1xa8")
+
+[connection signal="block_clicked" from="GridViewEditor" to="." method="_on_grid_view_editor_block_clicked"]
