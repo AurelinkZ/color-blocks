@@ -19,7 +19,7 @@ func setup_new_grid_view(grid: Dictionary, grid_width: int, grid_height: int):
 	height = grid_height
 	var viewport_size = get_viewport_rect().size
 	var offset_x = (viewport_size.x - ((grid_width - 5 ) * GameAssets.BLOCK_SIZE)) / 2 # centered horizontally
-	var offset_y = (viewport_size.y - (grid_height * GameAssets.BLOCK_SIZE)) / 2 # centered vertically
+	var offset_y = (viewport_size.y - ((grid_height - 2) * GameAssets.BLOCK_SIZE)) / 2 # centered vertically
 	for y in height:
 		for x in width:
 			var new_block = BLOCK.instantiate()

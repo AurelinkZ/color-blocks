@@ -4,9 +4,17 @@ var initial_width = 10
 var initial_height = 7
 
 var selected_color = Color.RED
-
+var win_color: Color
 @onready var grid_editor = $GridEditor
 @onready var grid_view_editor = $GridViewEditor
+
+const INDEX_TO_COLOR = {
+	0: Color.RED,
+	1: Color.BLUE,
+	2: Color.YELLOW,
+	3: Color.GREEN,
+	4: Color.WHITE
+}
 
 func _ready() -> void:
 	grid_editor.setup_initial_grid()
@@ -27,3 +35,8 @@ func _on_width_spin_box_value_changed(value: int) -> void:
 func set_spin_box_default_value():
 	$UI/VBoxContainer/HBoxContainer2/HeightSpinBox.value = initial_height
 	$UI/VBoxContainer/HBoxContainer/WidthSpinBox.value = initial_width
+
+
+func _on_win_color_option_button_item_selected(index: int) -> void:
+	win_color = INDEX_TO_COLOR[index]
+	print(win_color)

@@ -44,49 +44,61 @@ mouse_filter = 2
 top_level = true
 layout_mode = 0
 offset_left = 3.0
-offset_right = 136.0
-offset_bottom = 66.0
-scale = Vector2(0.6790854, 0.7370238)
+offset_top = 21.999998
+offset_right = 150.0
+offset_bottom = 347.63403
+scale = Vector2(0.46449926, 0.4627975)
+theme_override_constants/separation = 10
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/VBoxContainer" unique_id=43425084]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer" unique_id=841691473]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Height" type="Label" parent="UI/VBoxContainer/HBoxContainer2" unique_id=251187423]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/VBoxContainer/VBoxContainer" unique_id=43425084]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_constants/separation = 9
+
+[node name="Height" type="Label" parent="UI/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=251187423]
+layout_mode = 2
 text = "Height"
 
-[node name="HeightSpinBox" type="SpinBox" parent="UI/VBoxContainer/HBoxContainer2" unique_id=499929420]
+[node name="HeightSpinBox" type="SpinBox" parent="UI/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=499929420]
 layout_mode = 2
 min_value = 2.0
-max_value = 14.0
+max_value = 12.0
 value = 7.0
 rounded = true
+select_all_on_focus = true
 script = ExtResource("5_wchaa")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer" unique_id=1207127681]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/VBoxContainer" unique_id=1207127681]
 layout_mode = 2
-theme_override_constants/separation = 6
+theme_override_constants/separation = 14
 
-[node name="Width" type="Label" parent="UI/VBoxContainer/HBoxContainer" unique_id=1027120634]
+[node name="Width" type="Label" parent="UI/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1027120634]
+texture_filter = 2
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 16
 text = "Width"
 
-[node name="WidthSpinBox" type="SpinBox" parent="UI/VBoxContainer/HBoxContainer" unique_id=1280709841]
+[node name="WidthSpinBox" type="SpinBox" parent="UI/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1280709841]
 layout_mode = 2
 min_value = 2.0
-max_value = 14.0
+max_value = 16.0
 value = 10.0
 rounded = true
+select_all_on_focus = true
 script = ExtResource("5_wchaa")
 
-[node name="WinColor" type="Label" parent="UI/VBoxContainer" unique_id=1700584396]
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/VBoxContainer" unique_id=1001909983]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="WinColor" type="Label" parent="UI/VBoxContainer/VBoxContainer2" unique_id=1700584396]
 layout_mode = 2
 text = "Win color"
 
-[node name="WinColorOptionButton" type="OptionButton" parent="UI/VBoxContainer" unique_id=610892085]
+[node name="WinColorOptionButton" type="OptionButton" parent="UI/VBoxContainer/VBoxContainer2" unique_id=610892085]
 texture_filter = 1
 layout_mode = 2
 theme_override_constants/icon_max_width = 16
@@ -102,10 +114,10 @@ popup/item_1/icon = ExtResource("7_kerlq")
 popup/item_1/id = 1
 popup/item_2/text = "Yellow"
 popup/item_2/icon = ExtResource("9_g51jt")
-popup/item_2/id = 3
+popup/item_2/id = 2
 popup/item_3/text = "Green"
 popup/item_3/icon = ExtResource("8_2r1hx")
-popup/item_3/id = 2
+popup/item_3/id = 3
 popup/item_4/text = "White"
 popup/item_4/icon = ExtResource("10_qoy40")
 popup/item_4/id = 4
@@ -115,18 +127,27 @@ script = ExtResource("11_kerlq")
 modulate = Color(0.12156863, 0.12156863, 0.12156863, 1)
 show_behind_parent = true
 layout_mode = 0
-offset_right = 41.311462
+offset_right = 41.27242
 offset_bottom = 39.520668
-scale = Vector2(1.7912705, 6.0727715)
+scale = Vector2(1.792965, 6.079015)
 
 [node name="Separator" type="ColorRect" parent="UI/BGOptions" unique_id=1583279512]
 self_modulate = Color(0.09239707, 0.09239706, 0.09239706, 1)
 top_level = true
 layout_mode = 0
-offset_top = 52.0
+offset_top = 55.0
 offset_right = 74.0
-offset_bottom = 54.0
+offset_bottom = 57.0
+
+[node name="TopOptionsBG" type="ColorRect" parent="UI" unique_id=2060805376]
+modulate = Color(0.08468992, 0.08468994, 0.08468989, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_right = 237.59528
+offset_bottom = 2.7965057
+scale = Vector2(1.792965, 6.079015)
 
 [connection signal="block_clicked" from="GridViewEditor" to="." method="_on_grid_view_editor_block_clicked"]
-[connection signal="value_changed" from="UI/VBoxContainer/HBoxContainer2/HeightSpinBox" to="." method="_on_height_spin_box_value_changed"]
-[connection signal="value_changed" from="UI/VBoxContainer/HBoxContainer/WidthSpinBox" to="." method="_on_width_spin_box_value_changed"]
+[connection signal="value_changed" from="UI/VBoxContainer/VBoxContainer/HBoxContainer2/HeightSpinBox" to="." method="_on_height_spin_box_value_changed"]
+[connection signal="value_changed" from="UI/VBoxContainer/VBoxContainer/HBoxContainer/WidthSpinBox" to="." method="_on_width_spin_box_value_changed"]
+[connection signal="item_selected" from="UI/VBoxContainer/VBoxContainer2/WinColorOptionButton" to="." method="_on_win_color_option_button_item_selected"]
