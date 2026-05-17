@@ -5,6 +5,12 @@
 [ext_resource type="Script" uid="uid://ccjjuwgmob3tg" path="res://grid_editor.gd" id="2_n1xa8"]
 [ext_resource type="Script" uid="uid://c8uvco2omhky" path="res://Scripts/grid_view_editor.gd" id="3_n1xa8"]
 [ext_resource type="Script" uid="uid://bkmute4vlc3np" path="res://Scripts/spin_box.gd" id="5_wchaa"]
+[ext_resource type="Texture2D" uid="uid://p3ggffpdcqkt" path="res://Assets/new_blocks/new_red_block.png" id="6_5ogug"]
+[ext_resource type="Texture2D" uid="uid://4rsrx1sawrmp" path="res://Assets/new_blocks/new_blue_block.png" id="7_kerlq"]
+[ext_resource type="Texture2D" uid="uid://ct2hgp0b3dbcv" path="res://Assets/new_blocks/new_green_block.png" id="8_2r1hx"]
+[ext_resource type="Texture2D" uid="uid://c71k1lon5ydlj" path="res://Assets/new_blocks/new_yellow_block.png" id="9_g51jt"]
+[ext_resource type="Texture2D" uid="uid://cudkkmrqbxa1s" path="res://Assets/new_blocks/white_block.png" id="10_qoy40"]
+[ext_resource type="Script" uid="uid://b1df1ck56h3xp" path="res://Scenes/option_button.gd" id="11_kerlq"]
 
 [node name="LevelEditor" type="Node2D" unique_id=2050058702]
 script = ExtResource("1_rot6e")
@@ -76,13 +82,50 @@ value = 10.0
 rounded = true
 script = ExtResource("5_wchaa")
 
-[node name="ColorRect" type="ColorRect" parent="UI" unique_id=926075919]
-modulate = Color(0.12225223, 0.12225223, 0.12225223, 1)
+[node name="WinColor" type="Label" parent="UI/VBoxContainer" unique_id=1700584396]
+layout_mode = 2
+text = "Win color"
+
+[node name="WinColorOptionButton" type="OptionButton" parent="UI/VBoxContainer" unique_id=610892085]
+texture_filter = 1
+layout_mode = 2
+theme_override_constants/icon_max_width = 16
+theme_override_font_sizes/font_size = 10
+toggle_mode = false
+fit_to_longest_item = false
+item_count = 5
+popup/item_0/text = "Red"
+popup/item_0/icon = ExtResource("6_5ogug")
+popup/item_0/id = 0
+popup/item_1/text = "Blue"
+popup/item_1/icon = ExtResource("7_kerlq")
+popup/item_1/id = 1
+popup/item_2/text = "Yellow"
+popup/item_2/icon = ExtResource("9_g51jt")
+popup/item_2/id = 3
+popup/item_3/text = "Green"
+popup/item_3/icon = ExtResource("8_2r1hx")
+popup/item_3/id = 2
+popup/item_4/text = "White"
+popup/item_4/icon = ExtResource("10_qoy40")
+popup/item_4/id = 4
+script = ExtResource("11_kerlq")
+
+[node name="BGOptions" type="ColorRect" parent="UI" unique_id=926075919]
+modulate = Color(0.12156863, 0.12156863, 0.12156863, 1)
 show_behind_parent = true
 layout_mode = 0
 offset_right = 41.311462
 offset_bottom = 39.520668
 scale = Vector2(1.7912705, 6.0727715)
+
+[node name="Separator" type="ColorRect" parent="UI/BGOptions" unique_id=1583279512]
+self_modulate = Color(0.09239707, 0.09239706, 0.09239706, 1)
+top_level = true
+layout_mode = 0
+offset_top = 52.0
+offset_right = 74.0
+offset_bottom = 54.0
 
 [connection signal="block_clicked" from="GridViewEditor" to="." method="_on_grid_view_editor_block_clicked"]
 [connection signal="value_changed" from="UI/VBoxContainer/HBoxContainer2/HeightSpinBox" to="." method="_on_height_spin_box_value_changed"]
