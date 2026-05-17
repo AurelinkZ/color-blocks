@@ -28,6 +28,7 @@ func setup_new_grid_view(grid: Dictionary, grid_width: int, grid_height: int):
 			new_block.set_cell(Vector2i(x, y))
 			new_block.block_clicked.connect(_on_block_clicked)
 			new_block.set_color_first(grid[Vector2i(x, y)], BLOCK_TEXTURES)
+			new_block.set_editor()
 			new_grid_view[Vector2i(x, y)] = new_block
 			add_child(new_block)
 	grid_view = new_grid_view.duplicate()
