@@ -6,4 +6,4 @@ class_name LevelData
 @export var difficulty: String = "easy"
 @export var win_color: Color = Color.RED
 @export var grid_data: Dictionary
-@export var max_moves: int
+@export var max_moves: int = -1

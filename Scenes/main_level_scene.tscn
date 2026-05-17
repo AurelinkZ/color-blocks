@@ -74,8 +74,10 @@ self_modulate = Color(0, 0, 0, 0)
 top_level = true
 z_index = 1
 layout_mode = 0
-offset_right = 87.0
-offset_bottom = 28.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 88.0
+offset_bottom = 29.0
 theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
@@ -100,6 +102,23 @@ offset_bottom = 33.0
 scale = Vector2(0.8135515, 0.6839773)
 theme_override_font_sizes/font_size = 12
 text = "Edit"
+
+[node name="RemainingMovesText" type="Label" parent="UI/Control" unique_id=45998479]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 36.0
+offset_right = 83.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 9
+text = "Remaining moves: "
+
+[node name="RemainingMoves" type="Label" parent="UI/Control" unique_id=20674211]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 44.0
+offset_right = 41.0
+offset_bottom = 67.0
+theme_override_font_sizes/font_size = 9
 
 [node name="Background" type="Sprite2D" parent="." unique_id=843647324]
 show_behind_parent = true
