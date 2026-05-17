@@ -26,11 +26,6 @@ texture = ExtResource("1_s1b0e")
 [node name="GridEditor" type="Node" parent="." unique_id=1024026850]
 script = ExtResource("2_n1xa8")
 
-[node name="GridViewEditor" type="Node2D" parent="." unique_id=398632500]
-top_level = true
-z_index = 1
-script = ExtResource("3_n1xa8")
-
 [node name="UI" type="Control" parent="." unique_id=936906605]
 show_behind_parent = true
 z_index = -2
@@ -210,7 +205,69 @@ theme_override_constants/align_to_largest_stylebox = 0
 theme_override_font_sizes/font_size = 6
 text = "Try level"
 
-[connection signal="block_clicked" from="GridViewEditor" to="." method="_on_grid_view_editor_block_clicked"]
+[node name="PopupSaveWindow" type="CanvasLayer" parent="." unique_id=1489021861]
+layer = 3
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="PopupSaveWindow" unique_id=967000740]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 1
+offset_left = -7.0000153
+offset_top = -4.9999924
+offset_right = 60.999985
+offset_bottom = 57.000008
+scale = Vector2(6.4769707, 4.074447)
+
+[node name="SavePopup" type="PanelContainer" parent="PopupSaveWindow" unique_id=191423527]
+top_level = true
+z_index = 2
+texture_filter = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -31.0
+offset_right = 34.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5253488, 1.4472386)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupSaveWindow/SavePopup" unique_id=112391411]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PopupSaveWindow/SavePopup/VBoxContainer" unique_id=1365197191]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Save as:"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="PopupSaveWindow/SavePopup/VBoxContainer" unique_id=535114169]
+layout_mode = 2
+theme_override_font_sizes/font_size = 4
+text = "edited_level_"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupSaveWindow/SavePopup/VBoxContainer" unique_id=2074376880]
+layout_mode = 2
+alignment = 1
+
+[node name="Cancel" type="Button" parent="PopupSaveWindow/SavePopup/VBoxContainer/HBoxContainer" unique_id=728579367]
+layout_mode = 2
+theme_override_font_sizes/font_size = 4
+text = "Cancel"
+
+[node name="Save" type="Button" parent="PopupSaveWindow/SavePopup/VBoxContainer/HBoxContainer" unique_id=1998915107]
+layout_mode = 2
+theme_override_font_sizes/font_size = 4
+text = "Save"
+
+[node name="GridViewEditor" type="Node2D" parent="." unique_id=398632500]
+top_level = true
+script = ExtResource("3_n1xa8")
+
 [connection signal="value_changed" from="UI/LeftOptionsVBOX/VBoxContainer/HBoxContainer2/HeightSpinBoxBox" to="." method="_on_height_spin_box_value_changed"]
 [connection signal="value_changed" from="UI/LeftOptionsVBOX/VBoxContainer/HBoxContainer/WidthSpinBox" to="." method="_on_width_spin_box_value_changed"]
 [connection signal="item_selected" from="UI/LeftOptionsVBOX/VBoxContainer2/WinColorOptionButton" to="." method="_on_win_color_option_button_item_selected"]
@@ -218,3 +275,6 @@ text = "Try level"
 [connection signal="color_selected" from="UI/ColorSelector" to="." method="_on_color_selected"]
 [connection signal="pressed" from="UI/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="UI/TryLevel" to="." method="_on_try_level_pressed"]
+[connection signal="pressed" from="PopupSaveWindow/SavePopup/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_save_popup_pressed"]
+[connection signal="pressed" from="PopupSaveWindow/SavePopup/VBoxContainer/HBoxContainer/Save" to="." method="_on_save_in_popup_pressed"]
+[connection signal="block_clicked" from="GridViewEditor" to="." method="_on_grid_view_editor_block_clicked"]

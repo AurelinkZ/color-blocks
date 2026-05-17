@@ -90,6 +90,17 @@ middle_mouse_paste_enabled = false
 empty_selection_clipboard_enabled = false
 autowrap_mode = 2
 
+[node name="GoToEditButton" type="Button" parent="UI/Control" unique_id=1401658948]
+visible = false
+layout_mode = 0
+offset_left = 393.0
+offset_top = 2.0000002
+offset_right = 431.0
+offset_bottom = 33.0
+scale = Vector2(0.8135515, 0.6839773)
+theme_override_font_sizes/font_size = 12
+text = "Edit"
+
 [node name="Background" type="Sprite2D" parent="." unique_id=843647324]
 show_behind_parent = true
 z_index = -3
@@ -108,3 +119,4 @@ stream = ExtResource("8_r2c11")
 [connection signal="timeout" from="GridView/AnimationTimer" to="GridView" method="_on_animation_timer_timeout"]
 [connection signal="color_selected" from="UI/Control/HBoxContainer" to="." method="_on_color_selected"]
 [connection signal="pressed" from="UI/Control/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="UI/Control/GoToEditButton" to="." method="_on_go_to_edit_button_pressed"]

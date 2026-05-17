@@ -1,6 +1,9 @@
 extends Node2D
+class_name Game
 
 const WIN_SCENE = preload("res://Scenes/win_ui.tscn")
+
+static var edit_level_to_test: LevelData = null
 
 @onready var grid_manager = $GridManager
 @onready var grid_view = $GridView
@@ -16,8 +19,15 @@ var index_level: int = 0
 ### When launching, the game will load all the main levels and start by the first level.
 ### TEMPORARY WHILE THERE IS NOT A START MENU.
 func _ready() -> void:
-	_load_main_levels()
-	_start_new_level(levels[index_level])
+	# Normal mode
+	if edit_level_to_test == null:
+		_load_main_levels()
+		_start_new_level(levels[index_level])
+	# Edit level mode
+	else:
+		_start_new_level(edit_level_to_test)
+		$UI/Control/GoToEditButton.show()
+		
 
 ### Function used to setup the back and the front, used to first start a complete new level.
 func _start_new_level(level: LevelData) -> void:
@@ -81,3 +91,8 @@ func _load_main_levels() -> void:
 func _on_grid_view_animation_finished() -> void:
 	if grid_manager.is_won():
 		_game_won()
+
+
+func _on_go_to_edit_button_pressed() -> void:
+	var edit_scene = preload("res://Scenes/level_editor.tscn")
+	get_tree().change_scene_to_file(edit_scene.resource_path)

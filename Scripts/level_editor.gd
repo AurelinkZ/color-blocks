@@ -1,4 +1,7 @@
 extends Node2D
+class_name LevelEditor
+
+static var edit_level_to_test: LevelData = null
 
 var initial_width: int = 10
 var initial_height: int = 7
@@ -57,10 +60,20 @@ func _on_color_selected(color: Color) -> void:
 func _on_max_moves_changed(value: int) -> void:
 	max_moves = value
 
+## UI top left save button pressed to show the popup window
+# We deactivate the grid while we are saving
 func _on_save_button_pressed() -> void:
-	save_level(10)
+	$PopupSaveWindow.show()
+	for block in $GridViewEditor.get_children():
+		block.get_node("Area2D/CollisionShape2D").set_disabled(true)
 	
-func save_level(index_filename: int):
+func save_level(filename: String):
+	create_level_data()
+	
+	var path = "res://Levels/" + filename + ".tres"
+	ResourceSaver.save(edit_level_to_test, path)
+
+func create_level_data():
 	var level = LevelData.new()
 	level.grid_width = width
 	level.grid_height = height
@@ -68,9 +81,23 @@ func save_level(index_filename: int):
 	level.win_color = win_color
 	level.grid_data = grid_editor.grid
 	level.max_moves = max_moves
-	
-	var path = "res://Levels/edited_level_" + str(index_filename) + ".tres"
-	ResourceSaver.save(level, path)
+	edit_level_to_test = level
 
 func _on_try_level_pressed() -> void:
-	pass # Replace with function body.
+	create_level_data()
+	Game.edit_level_to_test = edit_level_to_test
+	get_tree().change_scene_to_file("res://Scenes/main_level_scene.tscn")
+	
+	
+## Function used when the save button on the popup save window is pressed
+## This function will save the level data with the filename given in the line edit
+func _on_save_in_popup_pressed() -> void:
+	save_level($PopupSaveWindow/SavePopup/VBoxContainer/LineEdit.text)
+	$PopupSaveWindow.hide()
+	for block in $GridViewEditor.get_children():
+		block.get_node("Area2D/CollisionShape2D").set_disabled(false)
+
+func _on_cancel_save_popup_pressed() -> void:
+	$PopupSaveWindow.hide()
+	for block in $GridViewEditor.get_children():
+		block.get_node("Area2D/CollisionShape2D").set_disabled(false)
