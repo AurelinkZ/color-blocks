@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c71k1lon5ydlj" path="res://Assets/new_blocks/new_yellow_block.png" id="9_g51jt"]
 [ext_resource type="Texture2D" uid="uid://cudkkmrqbxa1s" path="res://Assets/new_blocks/white_block.png" id="10_qoy40"]
 [ext_resource type="Script" uid="uid://b1df1ck56h3xp" path="res://Scripts/option_button.gd" id="11_kerlq"]
+[ext_resource type="Script" uid="uid://b7on4yqbkhskf" path="res://Scripts/color _selector.gd" id="12_2r1hx"]
 
 [node name="LevelEditor" type="Node2D" unique_id=2050058702]
 script = ExtResource("1_rot6e")
@@ -18,8 +19,8 @@ script = ExtResource("1_rot6e")
 [node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=139108953]
 z_index = -3
 texture_filter = 2
-position = Vector2(212.99998, 119.99998)
-scale = Vector2(0.221875, 0.22222228)
+position = Vector2(249.99998, 128)
+scale = Vector2(0.18333332, 0.20740741)
 texture = ExtResource("1_s1b0e")
 
 [node name="GridEditor" type="Node" parent="." unique_id=1024026850]
@@ -40,7 +41,7 @@ offset_right = 426.0
 offset_bottom = 240.0
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=1721755359]
+[node name="LeftOptionsVBOX" type="VBoxContainer" parent="UI" unique_id=1721755359]
 top_level = true
 layout_mode = 0
 offset_left = 3.0
@@ -50,19 +51,19 @@ offset_bottom = 347.63403
 scale = Vector2(0.46449926, 0.4627975)
 theme_override_constants/separation = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer" unique_id=841691473]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/LeftOptionsVBOX" unique_id=841691473]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/VBoxContainer/VBoxContainer" unique_id=43425084]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/LeftOptionsVBOX/VBoxContainer" unique_id=43425084]
 layout_mode = 2
 theme_override_constants/separation = 9
 
-[node name="Height" type="Label" parent="UI/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=251187423]
+[node name="Height" type="Label" parent="UI/LeftOptionsVBOX/VBoxContainer/HBoxContainer2" unique_id=251187423]
 layout_mode = 2
 text = "Height"
 
-[node name="HeightSpinBox" type="SpinBox" parent="UI/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=499929420]
+[node name="HeightSpinBoxBox" type="SpinBox" parent="UI/LeftOptionsVBOX/VBoxContainer/HBoxContainer2" unique_id=499929420]
 layout_mode = 2
 min_value = 2.0
 max_value = 12.0
@@ -71,17 +72,17 @@ rounded = true
 select_all_on_focus = true
 script = ExtResource("5_wchaa")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/VBoxContainer" unique_id=1207127681]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/LeftOptionsVBOX/VBoxContainer" unique_id=1207127681]
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="Width" type="Label" parent="UI/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1027120634]
+[node name="Width" type="Label" parent="UI/LeftOptionsVBOX/VBoxContainer/HBoxContainer" unique_id=1027120634]
 texture_filter = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "Width"
 
-[node name="WidthSpinBox" type="SpinBox" parent="UI/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1280709841]
+[node name="WidthSpinBox" type="SpinBox" parent="UI/LeftOptionsVBOX/VBoxContainer/HBoxContainer" unique_id=1280709841]
 layout_mode = 2
 min_value = 2.0
 max_value = 16.0
@@ -90,15 +91,15 @@ rounded = true
 select_all_on_focus = true
 script = ExtResource("5_wchaa")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="UI/VBoxContainer" unique_id=1001909983]
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/LeftOptionsVBOX" unique_id=1001909983]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="WinColor" type="Label" parent="UI/VBoxContainer/VBoxContainer2" unique_id=1700584396]
+[node name="WinColor" type="Label" parent="UI/LeftOptionsVBOX/VBoxContainer2" unique_id=1700584396]
 layout_mode = 2
 text = "Win color"
 
-[node name="WinColorOptionButton" type="OptionButton" parent="UI/VBoxContainer/VBoxContainer2" unique_id=610892085]
+[node name="WinColorOptionButton" type="OptionButton" parent="UI/LeftOptionsVBOX/VBoxContainer2" unique_id=610892085]
 texture_filter = 1
 layout_mode = 2
 theme_override_constants/icon_max_width = 16
@@ -123,6 +124,22 @@ popup/item_4/icon = ExtResource("10_qoy40")
 popup/item_4/id = 4
 script = ExtResource("11_kerlq")
 
+[node name="VBoxContainer3" type="VBoxContainer" parent="UI/LeftOptionsVBOX" unique_id=1241034617]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="UI/LeftOptionsVBOX/VBoxContainer3" unique_id=1412051412]
+layout_mode = 2
+text = "Max Moves"
+
+[node name="MaxMovesSpinBox" type="SpinBox" parent="UI/LeftOptionsVBOX/VBoxContainer3" unique_id=1414054427]
+layout_mode = 2
+min_value = -1.0
+max_value = 99.0
+value = -1.0
+rounded = true
+script = ExtResource("5_wchaa")
+
 [node name="BGOptions" type="ColorRect" parent="UI" unique_id=926075919]
 modulate = Color(0.12156863, 0.12156863, 0.12156863, 1)
 show_behind_parent = true
@@ -139,6 +156,14 @@ offset_top = 55.0
 offset_right = 74.0
 offset_bottom = 57.0
 
+[node name="Separator2" type="ColorRect" parent="UI/BGOptions" unique_id=1893410992]
+self_modulate = Color(0.09239707, 0.09239706, 0.09239706, 1)
+top_level = true
+layout_mode = 0
+offset_top = 79.0
+offset_right = 74.0
+offset_bottom = 81.0
+
 [node name="TopOptionsBG" type="ColorRect" parent="UI" unique_id=2060805376]
 modulate = Color(0.08468992, 0.08468994, 0.08468989, 1)
 show_behind_parent = true
@@ -147,7 +172,49 @@ offset_right = 237.59528
 offset_bottom = 2.7965057
 scale = Vector2(1.792965, 6.079015)
 
+[node name="ColorSelector" type="HBoxContainer" parent="UI" unique_id=300500650]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -12.0
+offset_right = 86.0
+offset_bottom = 17.0
+grow_horizontal = 2
+script = ExtResource("12_2r1hx")
+
+[node name="SaveButton" type="Button" parent="UI" unique_id=1552964390]
+modulate = Color(2.055, 2.055, 2.055, 1)
+layout_mode = 0
+offset_left = 10.0
+offset_right = 32.0
+offset_bottom = 17.0
+theme_override_constants/outline_size = 3
+theme_override_constants/h_separation = 3
+theme_override_constants/icon_max_width = 0
+theme_override_constants/align_to_largest_stylebox = 0
+theme_override_font_sizes/font_size = 6
+text = "Save"
+
+[node name="TryLevel" type="Button" parent="UI" unique_id=675857059]
+modulate = Color(2.055, 2.055, 2.055, 1)
+layout_mode = 0
+offset_left = 391.0
+offset_right = 424.0
+offset_bottom = 17.0
+theme_override_constants/outline_size = 3
+theme_override_constants/h_separation = 3
+theme_override_constants/icon_max_width = 0
+theme_override_constants/align_to_largest_stylebox = 0
+theme_override_font_sizes/font_size = 6
+text = "Try level"
+
 [connection signal="block_clicked" from="GridViewEditor" to="." method="_on_grid_view_editor_block_clicked"]
-[connection signal="value_changed" from="UI/VBoxContainer/VBoxContainer/HBoxContainer2/HeightSpinBox" to="." method="_on_height_spin_box_value_changed"]
-[connection signal="value_changed" from="UI/VBoxContainer/VBoxContainer/HBoxContainer/WidthSpinBox" to="." method="_on_width_spin_box_value_changed"]
-[connection signal="item_selected" from="UI/VBoxContainer/VBoxContainer2/WinColorOptionButton" to="." method="_on_win_color_option_button_item_selected"]
+[connection signal="value_changed" from="UI/LeftOptionsVBOX/VBoxContainer/HBoxContainer2/HeightSpinBoxBox" to="." method="_on_height_spin_box_value_changed"]
+[connection signal="value_changed" from="UI/LeftOptionsVBOX/VBoxContainer/HBoxContainer/WidthSpinBox" to="." method="_on_width_spin_box_value_changed"]
+[connection signal="item_selected" from="UI/LeftOptionsVBOX/VBoxContainer2/WinColorOptionButton" to="." method="_on_win_color_option_button_item_selected"]
+[connection signal="value_changed" from="UI/LeftOptionsVBOX/VBoxContainer3/MaxMovesSpinBox" to="." method="_on_max_moves_changed"]
+[connection signal="color_selected" from="UI/ColorSelector" to="." method="_on_color_selected"]
+[connection signal="pressed" from="UI/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="UI/TryLevel" to="." method="_on_try_level_pressed"]

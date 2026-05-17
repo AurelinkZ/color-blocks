@@ -58,7 +58,6 @@ func _on_cursor_hover() -> void:
 		tween.tween_property(hover_sprite, "scale", Vector2(1.0, 1.0), 0.08)
 	# Level Editor hold click to change the color of the blocks directly
 	if is_editor and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		print("test")
 		block_clicked.emit(cell)
 
 func _on_cursor_not_hovering() -> void:

@@ -75,7 +75,7 @@ func animate_refresh_grid(blocks_to_change: Array, color: Color):
 	animation_timer.start()
 
 func _on_animation_timer_timeout() -> void:
-	if animation_timer.wait_time >= minimum_timer_animation:
+	if animation_timer.wait_time >= minimum_timer_animation and animation_timer.wait_time - timer_animation_step >= 0:
 		animation_timer.wait_time -= timer_animation_step
 	else:
 		animation_timer.wait_time = minimum_timer_animation
