@@ -27,11 +27,16 @@ const INDEX_TO_COLOR = {
 }
 
 func _ready() -> void:
-	grid_editor.setup_initial_grid()
+	if edit_level_to_test != null:
+		width = edit_level_to_test.grid_width
+		height = edit_level_to_test.grid_height
+	else:
+		width = initial_width
+		height = initial_height
+	grid_editor.setup_initial_grid(edit_level_to_test, width, height)
 	grid_view_editor.setup_new_grid_view(grid_editor.grid, grid_editor.width, grid_editor.height)
 	color_selector.build_buttons(ARRAY_COLORS)
-	width = initial_width
-	height = initial_height
+	
 
 func _on_grid_view_editor_block_clicked(cell: Vector2i) -> void:
 	grid_editor.set_cell(cell, selected_color)

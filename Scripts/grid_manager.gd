@@ -19,9 +19,12 @@ func setup(level: LevelData):
 	width = level.grid_width
 	current_pallette = PALETTES[level.difficulty]
 	target_color = level.win_color
-	for i in range(0, height):
-		for j in range(0, width):
-			grid[Vector2i(j, i)] = pick_random_color()
+	if level.grid_data.size() != 0:
+		grid = level.grid_data.duplicate()
+	else:
+		for i in range(0, height):
+			for j in range(0, width):
+				grid[Vector2i(j, i)] = pick_random_color()
 	initial_grid = grid.duplicate()
 	
 func pick_random_color():

@@ -1,18 +1,21 @@
 extends Node
 
-const INITIAL_WIDTH: int = 10
-const INITIAL_HEIGHT: int = 6
-
-var width: int = INITIAL_WIDTH
-var height: int = INITIAL_HEIGHT
+var width: int
+var height: int
 var grid: Dictionary # Vector2i -> Color (Example: Vector2i(0, 0) -> Color.WHITE)
 
 ## Function to use to initialise the first grid of the level editor
 # Every cell of the grid will be blank (Color.WHTIE)
-func setup_initial_grid():
-	for y in height:
-		for x in width:
-			grid[Vector2i(x, y)] = Color.WHITE
+func setup_initial_grid(level: LevelData, width_val: int, height_val: int):
+	width = width_val
+	height = height_val
+	if level != null:
+		if level.grid_data.size() != 0:
+			grid = level.grid_data.duplicate()
+	else:
+		for y in height:
+			for x in width:
+				grid[Vector2i(x, y)] = Color.WHITE
 
 ## Set the width and refreshes the grid directly
 func set_width(width_user: int):

@@ -73,7 +73,8 @@ func _game_won():
 func _on_next_level_clicked():
 	if index_level < levels.size() - 1: 
 		index_level += 1
-	_start_new_level(levels[index_level]) # Not indent in case we reach the last level
+	if levels.size() != 0:
+		_start_new_level(levels[index_level]) # Avoid issues with unbound values
 	
 	if $UI/WinUI != null:
 		$UI/WinUI.queue_free()
@@ -92,7 +93,6 @@ func _on_grid_view_animation_finished() -> void:
 	if grid_manager.is_won():
 		_game_won()
 
-
 func _on_go_to_edit_button_pressed() -> void:
-	var edit_scene = preload("res://Scenes/level_editor.tscn")
-	get_tree().change_scene_to_file(edit_scene.resource_path)
+	LevelEditor.edit_level_to_test = edit_level_to_test
+	get_tree().change_scene_to_file("res://Scenes/level_editor.tscn")
