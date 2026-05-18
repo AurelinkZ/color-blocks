@@ -26,13 +26,28 @@ const INDEX_TO_COLOR = {
 	4: Color.WHITE
 }
 
+const COLOR_TO_INDEX = {
+	Color.RED:    0,
+	Color.BLUE:   1,
+	Color.YELLOW: 2,
+	Color.GREEN:  3,
+	Color.WHITE:  4
+}
+
 func _ready() -> void:
+	# If we load a level or we come back from testing the level
 	if edit_level_to_test != null:
 		width = edit_level_to_test.grid_width
 		height = edit_level_to_test.grid_height
+		max_moves = edit_level_to_test.max_moves
+		_set_spin_box_max_moves(max_moves)
+		win_color = edit_level_to_test.win_color
+		_set_win_color_option_button(COLOR_TO_INDEX[win_color])
+	# Else we put the default values
 	else:
 		width = initial_width
 		height = initial_height
+	set_spin_box_size_value(width, height)
 	grid_editor.setup_initial_grid(edit_level_to_test, width, height)
 	grid_view_editor.setup_new_grid_view(grid_editor.grid, grid_editor.width, grid_editor.height)
 	color_selector.build_buttons(ARRAY_COLORS)
@@ -52,9 +67,9 @@ func _on_width_spin_box_value_changed(value: int) -> void:
 	grid_view_editor.refresh_grid(grid_editor.grid, grid_editor.width, grid_editor.height)
 	width = value
 	
-func set_spin_box_default_value():
-	$UI/VBoxContainer/HBoxContainer2/HeightSpinBox.value = initial_height
-	$UI/VBoxContainer/HBoxContainer/WidthSpinBox.value = initial_width
+func set_spin_box_size_value(width_val: int, height_val: int):
+	$UI/LeftOptionsVBOX/VBoxContainer/HBoxContainer/WidthSpinBox.value = width_val
+	$UI/LeftOptionsVBOX/VBoxContainer/HBoxContainer2/HeightSpinBoxBox.value = height_val
 
 func _on_win_color_option_button_item_selected(index: int) -> void:
 	win_color = INDEX_TO_COLOR[index]
@@ -106,3 +121,10 @@ func _on_cancel_save_popup_pressed() -> void:
 	$PopupSaveWindow.hide()
 	for block in $GridViewEditor.get_children():
 		block.get_node("Area2D/CollisionShape2D").set_disabled(false)
+
+func _set_spin_box_max_moves(moves: int):
+	$UI/LeftOptionsVBOX/VBoxContainer3/MaxMovesSpinBox.value = moves
+
+func _set_win_color_option_button(id: int):
+	$UI/LeftOptionsVBOX/VBoxContainer2/WinColorOptionButton.select(id)
+	
