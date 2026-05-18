@@ -19,6 +19,21 @@ anchors_preset = 0
 offset_right = 426.0
 offset_bottom = 240.0
 
+[node name="Title" type="Label" parent="UI/Control" unique_id=2114714608]
+self_modulate = Color(1, 0.6058333, 0.45, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.5
+offset_top = 46.0
+offset_right = 65.5
+offset_bottom = 77.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 22
+text = "Color Blocks"
+horizontal_alignment = 1
+
 [node name="StartButton" type="Button" parent="UI/Control" unique_id=1626026383]
 layout_mode = 1
 anchors_preset = 8
@@ -35,19 +50,20 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 14
 text = "Play"
 
-[node name="Title" type="Label" parent="UI/Control" unique_id=2114714608]
-self_modulate = Color(1, 0.6058333, 0.45, 1)
+[node name="EditorButton" type="Button" parent="UI/Control" unique_id=481547959]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -47.0
-offset_top = 46.0
-offset_right = 48.0
-offset_bottom = 69.0
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = 24.649994
+offset_right = 49.5
+offset_bottom = 55.65007
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 22
-text = "Color Blocks"
-horizontal_alignment = 1
+grow_vertical = 2
+text = "Level Editor"
 
 [connection signal="pressed" from="UI/Control/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="UI/Control/EditorButton" to="." method="_on_editor_button_pressed"]

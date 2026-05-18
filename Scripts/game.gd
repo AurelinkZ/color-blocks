@@ -118,3 +118,6 @@ func set_remaining_moves(value: int):
 
 func game_lost():
 	print("you lost")
+
+func _on_back_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/starting_menu.tscn")

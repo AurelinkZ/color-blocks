@@ -182,8 +182,8 @@ script = ExtResource("12_2r1hx")
 [node name="SaveButton" type="Button" parent="UI" unique_id=1552964390]
 modulate = Color(2.055, 2.055, 2.055, 1)
 layout_mode = 0
-offset_left = 10.0
-offset_right = 32.0
+offset_left = 26.01
+offset_right = 48.010033
 offset_bottom = 17.0
 theme_override_constants/outline_size = 3
 theme_override_constants/h_separation = 3
@@ -204,6 +204,16 @@ theme_override_constants/icon_max_width = 0
 theme_override_constants/align_to_largest_stylebox = 0
 theme_override_font_sizes/font_size = 6
 text = "Try level"
+
+[node name="BackButton" type="Button" parent="UI" unique_id=1759909930]
+modulate = Color(2.055, 2.055, 2.055, 1)
+layout_mode = 0
+offset_left = 2.0
+offset_right = 24.0
+offset_bottom = 17.0
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 6
+text = "Back"
 
 [node name="PopupSaveWindow" type="CanvasLayer" parent="." unique_id=1489021861]
 layer = 3
@@ -275,6 +285,7 @@ script = ExtResource("3_n1xa8")
 [connection signal="color_selected" from="UI/ColorSelector" to="." method="_on_color_selected"]
 [connection signal="pressed" from="UI/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="UI/TryLevel" to="." method="_on_try_level_pressed"]
+[connection signal="pressed" from="UI/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="PopupSaveWindow/SavePopup/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_save_popup_pressed"]
 [connection signal="pressed" from="PopupSaveWindow/SavePopup/VBoxContainer/HBoxContainer/Save" to="." method="_on_save_in_popup_pressed"]
 [connection signal="block_clicked" from="GridViewEditor" to="." method="_on_grid_view_editor_block_clicked"]
