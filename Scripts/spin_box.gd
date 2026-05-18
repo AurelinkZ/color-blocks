@@ -12,7 +12,8 @@ func _ready() -> void:
 	connect("mouse_entered", _on_mouse_entered)
 	
 func _on_mouse_exited():
-	get_line_edit().editable = false
+	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		get_line_edit().editable = false
 
 func _on_mouse_entered():
 	get_line_edit().editable = true

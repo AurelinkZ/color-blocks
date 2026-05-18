@@ -15,6 +15,7 @@ var cells_to_animate: Array = []
 var levels: Array[LevelData] = []
 var index_level: int = 0
 var remaining_moves: int
+var max_moves: int
 
 ### STARTING POINT OF THE GAME.
 ### When launching, the game will load all the main levels and start by the first level.
@@ -37,7 +38,8 @@ func _start_new_level(level: LevelData) -> void:
 	grid_view.build_grid(grid_manager.grid, level.grid_width, level.grid_height)
 	color_selector.build_buttons(grid_manager.current_pallette)
 	ui.set_target_color_ui(level.win_color)
-	remaining_moves = level.max_moves
+	max_moves = level.max_moves
+	remaining_moves = max_moves
 	set_remaining_moves(remaining_moves)
 	
 func _on_color_selected(color: Color) -> void:
@@ -45,14 +47,14 @@ func _on_color_selected(color: Color) -> void:
 
 ## Function receiving the signal of a block clicked by the player.
 func _on_grid_view_block_clicked(cell: Vector2i) -> void:
-	if grid_manager.is_won() != true: # When game is won, player can't click a block
+	if grid_manager.is_won() != true and remaining_moves != 0: # When game is won, player can't click a block
 		cells_to_animate = grid_manager.fill_the_grid(cell, selected_color)
-		grid_view.animate_refresh_grid(cells_to_animate, selected_color)
-		if remaining_moves != -1:
-			remaining_moves -= 1
-			if remaining_moves == 0:
-				game_lost()
-			ui.set_remaining_moves(remaining_moves)
+		if cells_to_animate.size() != 0:
+			if remaining_moves != -1:
+				remaining_moves -= 1
+				ui.set_remaining_moves(remaining_moves)
+			grid_view.animate_refresh_grid(cells_to_animate, selected_color)
+		
 
 # Receive the signal of the restart button of the UI when the game is running.
 func _on_restart_pressed() -> void:
@@ -69,6 +71,8 @@ func _restart_level() -> void:
 	ui.game_running()
 	grid_manager.restart_grid()
 	grid_view.refresh_grid(grid_manager.grid)
+	remaining_moves = max_moves
+	set_remaining_moves(max_moves)
 
 ## Main function to show the win screen.
 func _game_won():
@@ -100,13 +104,17 @@ func _load_main_levels() -> void:
 func _on_grid_view_animation_finished() -> void:
 	if grid_manager.is_won():
 		_game_won()
+	
+	elif remaining_moves == 0:
+		game_lost()
+	print(remaining_moves)
 
 func _on_go_to_edit_button_pressed() -> void:
 	LevelEditor.edit_level_to_test = edit_level_to_test
 	get_tree().change_scene_to_file("res://Scenes/level_editor.tscn")
 
 func set_remaining_moves(value: int):
-	ui.set_remaining_moves(value)
+	ui.set_remaining_moves(remaining_moves)
 
 func game_lost():
 	print("you lost")
