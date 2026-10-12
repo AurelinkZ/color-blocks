@@ -12,6 +12,8 @@ var width: int
 var height: int
 var max_moves: int = -1
 
+@onready var file_dialog: FileDialog = $UI/FileDialog
+
 @onready var grid_editor = $GridEditor
 @onready var grid_view_editor = $GridViewEditor
 @onready var color_selector = $UI/ColorSelector
@@ -37,21 +39,27 @@ const COLOR_TO_INDEX = {
 func _ready() -> void:
 	# If we load a level or we come back from testing the level
 	if edit_level_to_test != null:
-		width = edit_level_to_test.grid_width
-		height = edit_level_to_test.grid_height
-		max_moves = edit_level_to_test.max_moves
-		_set_spin_box_max_moves(max_moves)
-		win_color = edit_level_to_test.win_color
-		_set_win_color_option_button(COLOR_TO_INDEX[win_color])
+		load_level(edit_level_to_test)
 	# Else we put the default values
 	else:
 		width = initial_width
 		height = initial_height
+		set_spin_box_size_value(width, height)
+		grid_editor.setup_initial_grid(edit_level_to_test, width, height)
+		grid_view_editor.setup_new_grid_view(grid_editor.grid, grid_editor.width, grid_editor.height)
+		color_selector.build_buttons(ARRAY_COLORS)
+	
+func load_level(level: LevelData):
+	width = level.grid_width
+	height = level.grid_height
+	max_moves = level.max_moves
+	_set_spin_box_max_moves(max_moves)
+	win_color = level.win_color
+	_set_win_color_option_button(COLOR_TO_INDEX[win_color])
 	set_spin_box_size_value(width, height)
-	grid_editor.setup_initial_grid(edit_level_to_test, width, height)
+	grid_editor.setup_initial_grid(level, width, height)
 	grid_view_editor.setup_new_grid_view(grid_editor.grid, grid_editor.width, grid_editor.height)
 	color_selector.build_buttons(ARRAY_COLORS)
-	
 
 func _on_grid_view_editor_block_clicked(cell: Vector2i) -> void:
 	grid_editor.set_cell(cell, selected_color)
@@ -127,8 +135,30 @@ func _set_spin_box_max_moves(moves: int):
 
 func _set_win_color_option_button(id: int):
 	$UI/LeftOptionsVBOX/VBoxContainer2/WinColorOptionButton.select(id)
-	
-
 
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/starting_menu.tscn")
+
+
+func _on_load_button_pressed() -> void:
+	for block in $GridViewEditor.get_children():
+		block.get_node("Area2D/CollisionShape2D").set_disabled(true)
+	file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+	file_dialog.filters = ["*.tres"]
+	file_dialog.size = Vector2(426,240)
+	file_dialog.popup_centered(Vector2(300,200))
+	
+func _on_file_dialog_file_selected(path: String) -> void:
+	var level: LevelData = load(path) as LevelData
+	if level == null:
+		push_warning("Failed to load a level")
+		return
+	load_level(level)
+	await get_tree().create_timer(1.0).timeout
+	for block in $GridViewEditor.get_children():
+		block.get_node("Area2D/CollisionShape2D").set_disabled(false)
+
+
+func _on_blank_button_pressed() -> void:
+	grid_editor.blank_grid()
+	grid_view_editor.refresh_grid(grid_editor.grid, width, height)

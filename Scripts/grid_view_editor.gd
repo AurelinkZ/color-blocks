@@ -1,7 +1,7 @@
 extends Node2D
 
 const BLOCK = preload("res://Scenes/block.tscn")
-const BLOCK_TEXTURES = GameAssets.TEXTURE_BLOCKS
+var block_textures = GameAssets.TEXTURE_BLOCKS
 
 signal block_clicked(cell: Vector2i)
 
@@ -27,7 +27,7 @@ func setup_new_grid_view(grid: Dictionary, grid_width: int, grid_height: int):
 			new_block.position.y = (offset_y + GameAssets.BLOCK_SIZE * y)
 			new_block.set_cell(Vector2i(x, y))
 			new_block.block_clicked.connect(_on_block_clicked)
-			new_block.set_color_first(grid[Vector2i(x, y)], BLOCK_TEXTURES)
+			new_block.set_color_first(grid[Vector2i(x, y)], block_textures)
 			new_block.set_editor()
 			new_grid_view[Vector2i(x, y)] = new_block
 			add_child(new_block)

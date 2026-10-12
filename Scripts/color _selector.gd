@@ -8,7 +8,7 @@ const PRESSED_TEXTURE = 1
 const TEXTURE_SIZE_WIDTH = 16
 const TEXTURE_SIZE_HEIGHT = 16
 
-const TEXTURES = GameAssets.COLOR_SELECTOR_TEXTURES
+var TEXTURES = GameAssets.COLOR_SELECTOR_TEXTURES
 var button_group: ButtonGroup = ButtonGroup.new()
 var pallette_color: Array = []
 

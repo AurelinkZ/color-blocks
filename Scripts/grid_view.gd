@@ -21,7 +21,7 @@ var animate_color: Color
 signal block_clicked(cell: Vector2i)
 signal fill_grid_animation_finished()
 
-const TEXTURES = GameAssets.TEXTURE_BLOCKS
+var TEXTURES = GameAssets.TEXTURE_BLOCKS
 
 func build_grid(grid: Dictionary, grid_width: int, grid_height: int):
 	delete_grid()

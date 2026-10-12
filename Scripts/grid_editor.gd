@@ -47,3 +47,11 @@ func set_cell(cell: Vector2i, color: Color):
 
 func get_cell_color(cell: Vector2i):
 	return grid[cell]
+
+func blank_grid():
+	var new_grid: Dictionary
+	for y in height:
+		for x in width:
+			new_grid[Vector2i(x,y)] = Color.WHITE
+	grid = new_grid.duplicate()
+			
