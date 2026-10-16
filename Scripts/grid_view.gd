@@ -21,7 +21,7 @@ var animate_color: Color
 signal block_clicked(cell: Vector2i)
 signal fill_grid_animation_finished()
 
-const TEXTURES = GameAssets.TEXTURE_BLOCKS
+var TEXTURES = GameAssets.TEXTURE_BLOCKS
 
 func build_grid(grid: Dictionary, grid_width: int, grid_height: int):
 	delete_grid()
@@ -76,7 +76,7 @@ func animate_refresh_grid(blocks_to_change: Array, color: Color):
 
 func _on_animation_timer_timeout() -> void:
 	if animation_timer.wait_time >= minimum_timer_animation:
-		animation_timer.wait_time -= timer_animation_step
+		animation_timer.wait_time = max(minimum_timer_animation, animation_timer.wait_time - timer_animation_step)
 	else:
 		animation_timer.wait_time = minimum_timer_animation
 	animate_refresh_grid(blocks_to_animate_remaining, animate_color)

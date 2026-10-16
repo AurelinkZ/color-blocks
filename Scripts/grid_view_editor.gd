@@ -1,7 +1,7 @@
 extends Node2D
 
 const BLOCK = preload("res://Scenes/block.tscn")
-const BLOCK_TEXTURES = GameAssets.TEXTURE_BLOCKS
+var block_textures = GameAssets.TEXTURE_BLOCKS
 
 signal block_clicked(cell: Vector2i)
 
@@ -19,7 +19,7 @@ func setup_new_grid_view(grid: Dictionary, grid_width: int, grid_height: int):
 	height = grid_height
 	var viewport_size = get_viewport_rect().size
 	var offset_x = (viewport_size.x - ((grid_width - 5 ) * GameAssets.BLOCK_SIZE)) / 2 # centered horizontally
-	var offset_y = (viewport_size.y - (grid_height * GameAssets.BLOCK_SIZE)) / 2 # centered vertically
+	var offset_y = (viewport_size.y - ((grid_height - 2) * GameAssets.BLOCK_SIZE)) / 2 # centered vertically
 	for y in height:
 		for x in width:
 			var new_block = BLOCK.instantiate()
@@ -27,7 +27,8 @@ func setup_new_grid_view(grid: Dictionary, grid_width: int, grid_height: int):
 			new_block.position.y = (offset_y + GameAssets.BLOCK_SIZE * y)
 			new_block.set_cell(Vector2i(x, y))
 			new_block.block_clicked.connect(_on_block_clicked)
-			new_block.set_color_first(grid[Vector2i(x, y)], BLOCK_TEXTURES)
+			new_block.set_color_first(grid[Vector2i(x, y)], block_textures)
+			new_block.set_editor()
 			new_grid_view[Vector2i(x, y)] = new_block
 			add_child(new_block)
 	grid_view = new_grid_view.duplicate()

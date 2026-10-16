@@ -74,8 +74,10 @@ self_modulate = Color(0, 0, 0, 0)
 top_level = true
 z_index = 1
 layout_mode = 0
-offset_right = 87.0
-offset_bottom = 28.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 88.0
+offset_bottom = 29.0
 theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
@@ -89,6 +91,47 @@ drag_and_drop_selection_enabled = false
 middle_mouse_paste_enabled = false
 empty_selection_clipboard_enabled = false
 autowrap_mode = 2
+
+[node name="GoToEditButton" type="Button" parent="UI/Control" unique_id=1401658948]
+visible = false
+layout_mode = 0
+offset_left = 393.0
+offset_top = 2.0000002
+offset_right = 431.0
+offset_bottom = 33.0
+scale = Vector2(0.8135515, 0.6839773)
+theme_override_font_sizes/font_size = 12
+text = "Edit"
+
+[node name="RemainingMovesText" type="Label" parent="UI/Control" unique_id=45998479]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 36.0
+offset_right = 83.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 9
+text = "Remaining moves: "
+
+[node name="RemainingMoves" type="Label" parent="UI/Control" unique_id=20674211]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 44.0
+offset_right = 41.0
+offset_bottom = 67.0
+theme_override_font_sizes/font_size = 9
+
+[node name="BackButton" type="Button" parent="UI/Control" unique_id=648167739]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 2.975
+offset_top = -48.0
+offset_right = 34.975
+offset_bottom = -26.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 8
+text = "Back"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=843647324]
 show_behind_parent = true
@@ -108,3 +151,5 @@ stream = ExtResource("8_r2c11")
 [connection signal="timeout" from="GridView/AnimationTimer" to="GridView" method="_on_animation_timer_timeout"]
 [connection signal="color_selected" from="UI/Control/HBoxContainer" to="." method="_on_color_selected"]
 [connection signal="pressed" from="UI/Control/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="UI/Control/GoToEditButton" to="." method="_on_go_to_edit_button_pressed"]
+[connection signal="pressed" from="UI/Control/BackButton" to="." method="_on_back_button_pressed"]

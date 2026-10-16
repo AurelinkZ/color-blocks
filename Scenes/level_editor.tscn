@@ -2,9 +2,16 @@
 
 [ext_resource type="Script" uid="uid://c1xtep06j7u3u" path="res://Scripts/level_editor.gd" id="1_rot6e"]
 [ext_resource type="Texture2D" uid="uid://bb2mc31ucm2v0" path="res://Assets/background_image_dark_blue.jpg" id="1_s1b0e"]
-[ext_resource type="Script" uid="uid://ccjjuwgmob3tg" path="res://grid_editor.gd" id="2_n1xa8"]
+[ext_resource type="Script" uid="uid://ccjjuwgmob3tg" path="res://Scripts/grid_editor.gd" id="2_n1xa8"]
 [ext_resource type="Script" uid="uid://c8uvco2omhky" path="res://Scripts/grid_view_editor.gd" id="3_n1xa8"]
 [ext_resource type="Script" uid="uid://bkmute4vlc3np" path="res://Scripts/spin_box.gd" id="5_wchaa"]
+[ext_resource type="Texture2D" uid="uid://p3ggffpdcqkt" path="res://Assets/new_blocks/new_red_block.png" id="6_5ogug"]
+[ext_resource type="Texture2D" uid="uid://4rsrx1sawrmp" path="res://Assets/new_blocks/new_blue_block.png" id="7_kerlq"]
+[ext_resource type="Texture2D" uid="uid://ct2hgp0b3dbcv" path="res://Assets/new_blocks/new_green_block.png" id="8_2r1hx"]
+[ext_resource type="Texture2D" uid="uid://c71k1lon5ydlj" path="res://Assets/new_blocks/new_yellow_block.png" id="9_g51jt"]
+[ext_resource type="Texture2D" uid="uid://cudkkmrqbxa1s" path="res://Assets/new_blocks/white_block.png" id="10_qoy40"]
+[ext_resource type="Script" uid="uid://b1df1ck56h3xp" path="res://Scripts/option_button.gd" id="11_kerlq"]
+[ext_resource type="Script" uid="uid://b7on4yqbkhskf" path="res://Scripts/color _selector.gd" id="12_2r1hx"]
 
 [node name="LevelEditor" type="Node2D" unique_id=2050058702]
 script = ExtResource("1_rot6e")
@@ -12,17 +19,12 @@ script = ExtResource("1_rot6e")
 [node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=139108953]
 z_index = -3
 texture_filter = 2
-position = Vector2(212.99998, 119.99998)
-scale = Vector2(0.221875, 0.22222228)
+position = Vector2(249.99998, 128)
+scale = Vector2(0.18333332, 0.20740741)
 texture = ExtResource("1_s1b0e")
 
 [node name="GridEditor" type="Node" parent="." unique_id=1024026850]
 script = ExtResource("2_n1xa8")
-
-[node name="GridViewEditor" type="Node2D" parent="." unique_id=398632500]
-top_level = true
-z_index = 1
-script = ExtResource("3_n1xa8")
 
 [node name="UI" type="Control" parent="." unique_id=936906605]
 show_behind_parent = true
@@ -34,56 +36,285 @@ offset_right = 426.0
 offset_bottom = 240.0
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=1721755359]
+[node name="LeftOptionsVBOX" type="VBoxContainer" parent="UI" unique_id=1721755359]
 top_level = true
 layout_mode = 0
 offset_left = 3.0
-offset_right = 136.0
-offset_bottom = 66.0
-scale = Vector2(0.6790854, 0.7370238)
+offset_top = 21.999998
+offset_right = 150.0
+offset_bottom = 347.63403
+scale = Vector2(0.46449926, 0.4627975)
+theme_override_constants/separation = 10
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/VBoxContainer" unique_id=43425084]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/LeftOptionsVBOX" unique_id=841691473]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Height" type="Label" parent="UI/VBoxContainer/HBoxContainer2" unique_id=251187423]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/LeftOptionsVBOX/VBoxContainer" unique_id=43425084]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_constants/separation = 9
+
+[node name="Height" type="Label" parent="UI/LeftOptionsVBOX/VBoxContainer/HBoxContainer2" unique_id=251187423]
+layout_mode = 2
 text = "Height"
 
-[node name="HeightSpinBox" type="SpinBox" parent="UI/VBoxContainer/HBoxContainer2" unique_id=499929420]
+[node name="HeightSpinBoxBox" type="SpinBox" parent="UI/LeftOptionsVBOX/VBoxContainer/HBoxContainer2" unique_id=499929420]
 layout_mode = 2
 min_value = 2.0
-max_value = 14.0
+max_value = 12.0
 value = 7.0
 rounded = true
+select_all_on_focus = true
 script = ExtResource("5_wchaa")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer" unique_id=1207127681]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/LeftOptionsVBOX/VBoxContainer" unique_id=1207127681]
 layout_mode = 2
-theme_override_constants/separation = 6
+theme_override_constants/separation = 14
 
-[node name="Width" type="Label" parent="UI/VBoxContainer/HBoxContainer" unique_id=1027120634]
+[node name="Width" type="Label" parent="UI/LeftOptionsVBOX/VBoxContainer/HBoxContainer" unique_id=1027120634]
+texture_filter = 2
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 16
 text = "Width"
 
-[node name="WidthSpinBox" type="SpinBox" parent="UI/VBoxContainer/HBoxContainer" unique_id=1280709841]
+[node name="WidthSpinBox" type="SpinBox" parent="UI/LeftOptionsVBOX/VBoxContainer/HBoxContainer" unique_id=1280709841]
 layout_mode = 2
 min_value = 2.0
-max_value = 14.0
+max_value = 16.0
 value = 10.0
+rounded = true
+select_all_on_focus = true
+script = ExtResource("5_wchaa")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/LeftOptionsVBOX" unique_id=1001909983]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="WinColor" type="Label" parent="UI/LeftOptionsVBOX/VBoxContainer2" unique_id=1700584396]
+layout_mode = 2
+text = "Win color"
+
+[node name="WinColorOptionButton" type="OptionButton" parent="UI/LeftOptionsVBOX/VBoxContainer2" unique_id=610892085]
+texture_filter = 1
+layout_mode = 2
+theme_override_constants/icon_max_width = 16
+theme_override_font_sizes/font_size = 10
+toggle_mode = false
+fit_to_longest_item = false
+item_count = 5
+popup/item_0/text = "Red"
+popup/item_0/icon = ExtResource("6_5ogug")
+popup/item_0/id = 0
+popup/item_1/text = "Blue"
+popup/item_1/icon = ExtResource("7_kerlq")
+popup/item_1/id = 1
+popup/item_2/text = "Yellow"
+popup/item_2/icon = ExtResource("9_g51jt")
+popup/item_2/id = 2
+popup/item_3/text = "Green"
+popup/item_3/icon = ExtResource("8_2r1hx")
+popup/item_3/id = 3
+popup/item_4/text = "White"
+popup/item_4/icon = ExtResource("10_qoy40")
+popup/item_4/id = 4
+script = ExtResource("11_kerlq")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="UI/LeftOptionsVBOX" unique_id=1241034617]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="UI/LeftOptionsVBOX/VBoxContainer3" unique_id=1412051412]
+layout_mode = 2
+text = "Max Moves"
+
+[node name="MaxMovesSpinBox" type="SpinBox" parent="UI/LeftOptionsVBOX/VBoxContainer3" unique_id=1414054427]
+layout_mode = 2
+min_value = -1.0
+max_value = 99.0
+value = -1.0
 rounded = true
 script = ExtResource("5_wchaa")
 
-[node name="ColorRect" type="ColorRect" parent="UI" unique_id=926075919]
-modulate = Color(0.12225223, 0.12225223, 0.12225223, 1)
+[node name="BGOptions" type="ColorRect" parent="UI" unique_id=926075919]
+modulate = Color(0.12156863, 0.12156863, 0.12156863, 1)
 show_behind_parent = true
 layout_mode = 0
-offset_right = 41.311462
+offset_right = 41.27242
 offset_bottom = 39.520668
-scale = Vector2(1.7912705, 6.0727715)
+scale = Vector2(1.792965, 6.079015)
 
+[node name="Separator" type="ColorRect" parent="UI/BGOptions" unique_id=1583279512]
+self_modulate = Color(0.09239707, 0.09239706, 0.09239706, 1)
+top_level = true
+layout_mode = 0
+offset_top = 55.0
+offset_right = 74.0
+offset_bottom = 57.0
+
+[node name="Separator2" type="ColorRect" parent="UI/BGOptions" unique_id=1893410992]
+self_modulate = Color(0.09239707, 0.09239706, 0.09239706, 1)
+top_level = true
+layout_mode = 0
+offset_top = 79.0
+offset_right = 74.0
+offset_bottom = 81.0
+
+[node name="TopOptionsBG" type="ColorRect" parent="UI" unique_id=2060805376]
+modulate = Color(0.08468992, 0.08468994, 0.08468989, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_right = 237.59528
+offset_bottom = 2.7965057
+scale = Vector2(1.792965, 6.079015)
+
+[node name="ColorSelector" type="HBoxContainer" parent="UI" unique_id=300500650]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -12.0
+offset_right = 86.0
+offset_bottom = 17.0
+grow_horizontal = 2
+script = ExtResource("12_2r1hx")
+
+[node name="SaveButton" type="Button" parent="UI" unique_id=1552964390]
+modulate = Color(2.055, 2.055, 2.055, 1)
+layout_mode = 0
+offset_left = 26.01
+offset_right = 48.010033
+offset_bottom = 17.0
+theme_override_constants/outline_size = 3
+theme_override_constants/h_separation = 3
+theme_override_constants/icon_max_width = 0
+theme_override_constants/align_to_largest_stylebox = 0
+theme_override_font_sizes/font_size = 6
+text = "Save"
+
+[node name="TryLevel" type="Button" parent="UI" unique_id=675857059]
+modulate = Color(2.055, 2.055, 2.055, 1)
+layout_mode = 0
+offset_left = 391.0
+offset_right = 424.0
+offset_bottom = 17.0
+theme_override_constants/outline_size = 3
+theme_override_constants/h_separation = 3
+theme_override_constants/icon_max_width = 0
+theme_override_constants/align_to_largest_stylebox = 0
+theme_override_font_sizes/font_size = 6
+text = "Try level"
+
+[node name="BackButton" type="Button" parent="UI" unique_id=1759909930]
+modulate = Color(2.055, 2.055, 2.055, 1)
+layout_mode = 0
+offset_left = 2.0
+offset_right = 24.0
+offset_bottom = 17.0
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 6
+text = "Back"
+
+[node name="LoadButton" type="Button" parent="UI" unique_id=560016015]
+modulate = Color(2.055, 2.055, 2.055, 1)
+layout_mode = 0
+offset_left = 50.0
+offset_right = 73.0
+offset_bottom = 17.0
+theme_override_constants/outline_size = 3
+theme_override_constants/h_separation = 3
+theme_override_constants/icon_max_width = 0
+theme_override_constants/align_to_largest_stylebox = 0
+theme_override_font_sizes/font_size = 6
+text = "Load"
+
+[node name="FileDialog" type="FileDialog" parent="UI" unique_id=625178687]
+
+[node name="BlankButton" type="Button" parent="UI" unique_id=1040922965]
+modulate = Color(2.055, 2.055, 2.055, 1)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 210.0
+offset_right = 65.0
+offset_bottom = 236.0
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 6
+text = "Blank"
+
+[node name="PopupSaveWindow" type="CanvasLayer" parent="." unique_id=1489021861]
+layer = 3
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="PopupSaveWindow" unique_id=967000740]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 1
+offset_left = -7.0000153
+offset_top = -4.9999924
+offset_right = 60.999985
+offset_bottom = 57.000008
+scale = Vector2(6.4769707, 4.074447)
+
+[node name="SavePopup" type="PanelContainer" parent="PopupSaveWindow" unique_id=191423527]
+top_level = true
+z_index = 2
+texture_filter = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -31.0
+offset_right = 34.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5253488, 1.4472386)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupSaveWindow/SavePopup" unique_id=112391411]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PopupSaveWindow/SavePopup/VBoxContainer" unique_id=1365197191]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Save as:"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="PopupSaveWindow/SavePopup/VBoxContainer" unique_id=535114169]
+layout_mode = 2
+theme_override_font_sizes/font_size = 4
+text = "edited_level_"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupSaveWindow/SavePopup/VBoxContainer" unique_id=2074376880]
+layout_mode = 2
+alignment = 1
+
+[node name="Cancel" type="Button" parent="PopupSaveWindow/SavePopup/VBoxContainer/HBoxContainer" unique_id=728579367]
+layout_mode = 2
+theme_override_font_sizes/font_size = 4
+text = "Cancel"
+
+[node name="Save" type="Button" parent="PopupSaveWindow/SavePopup/VBoxContainer/HBoxContainer" unique_id=1998915107]
+layout_mode = 2
+theme_override_font_sizes/font_size = 4
+text = "Save"
+
+[node name="GridViewEditor" type="Node2D" parent="." unique_id=398632500]
+top_level = true
+script = ExtResource("3_n1xa8")
+
+[connection signal="value_changed" from="UI/LeftOptionsVBOX/VBoxContainer/HBoxContainer2/HeightSpinBoxBox" to="." method="_on_height_spin_box_value_changed"]
+[connection signal="value_changed" from="UI/LeftOptionsVBOX/VBoxContainer/HBoxContainer/WidthSpinBox" to="." method="_on_width_spin_box_value_changed"]
+[connection signal="item_selected" from="UI/LeftOptionsVBOX/VBoxContainer2/WinColorOptionButton" to="." method="_on_win_color_option_button_item_selected"]
+[connection signal="value_changed" from="UI/LeftOptionsVBOX/VBoxContainer3/MaxMovesSpinBox" to="." method="_on_max_moves_changed"]
+[connection signal="color_selected" from="UI/ColorSelector" to="." method="_on_color_selected"]
+[connection signal="pressed" from="UI/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="UI/TryLevel" to="." method="_on_try_level_pressed"]
+[connection signal="pressed" from="UI/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="UI/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="file_selected" from="UI/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="UI/BlankButton" to="." method="_on_blank_button_pressed"]
+[connection signal="pressed" from="PopupSaveWindow/SavePopup/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_save_popup_pressed"]
+[connection signal="pressed" from="PopupSaveWindow/SavePopup/VBoxContainer/HBoxContainer/Save" to="." method="_on_save_in_popup_pressed"]
 [connection signal="block_clicked" from="GridViewEditor" to="." method="_on_grid_view_editor_block_clicked"]
-[connection signal="value_changed" from="UI/VBoxContainer/HBoxContainer2/HeightSpinBox" to="." method="_on_height_spin_box_value_changed"]
-[connection signal="value_changed" from="UI/VBoxContainer/HBoxContainer/WidthSpinBox" to="." method="_on_width_spin_box_value_changed"]
