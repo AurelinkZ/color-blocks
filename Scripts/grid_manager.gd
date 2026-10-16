@@ -1,6 +1,6 @@
 extends Node
 
-const PALETTES = {
+const PALETTES_RANDOM = {
 	"easy": [Color.RED, Color.BLUE, Color.YELLOW],
 	"medium": [Color.RED, Color.BLUE, Color.YELLOW, Color.GREEN]
 }
@@ -17,8 +17,8 @@ func setup(level: LevelData):
 	clear_grid()
 	height = level.grid_height
 	width = level.grid_width
-	current_pallette = PALETTES[level.difficulty]
 	target_color = level.win_color
+	current_pallette = build_palette(level.grid_data)
 	if level.grid_data.size() != 0:
 		grid = level.grid_data.duplicate()
 	else:
@@ -29,6 +29,14 @@ func setup(level: LevelData):
 	
 func pick_random_color():
 	return current_pallette.pick_random()
+
+func build_palette(array) -> Array[Color]:
+	var palette_array: Array = []
+	palette_array.append(target_color)
+	for cell in array:
+		if not palette_array.has(array[cell]):
+			palette_array.append(Color(array[cell]))
+	return palette_array
  
 func fill_the_grid(cell: Vector2i, color: Color) -> Array:
 	if current_pallette.has(color) == false:
